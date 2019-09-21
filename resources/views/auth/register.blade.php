@@ -19,7 +19,7 @@
                 background: #60a3bc !important;
             }
             .user_card {
-                height: 700px;
+                height: 800px;
                 width: 350px;
                 margin-top: 10%;
                 margin-bottom: 20px;
@@ -83,6 +83,16 @@
             .label-persetujuan {
                 font-size: 14px;
             }
+            .text-error {
+                height: 10px;
+                margin-top: -10;
+                margin-bottom: 20px;
+                font-size: 12px;
+                color: red;
+            }
+            .border-error {
+                border-color: red;
+            }
         </style>
     </head>
     <!--Coded with love by Mutiullah Samim-->
@@ -103,57 +113,97 @@
                                 <div class="input-group-append">
                                     <span class="input-group-text"><i class="fas fa-user"></i></span>
                                 </div>
-                                <input type="text" name="nama" class="form-control input_user" value="" placeholder="nama lengkap">
+                                <input type="text" name="nama" class="form-control input_user{{ $errors->has('nama') ? ' border-error' : '' }}" value="{{ old('nama') }}" placeholder="nama lengkap">
+                            </div>
+                            <div class="text-error">
+                                @if ($errors->has('nama'))
+                                    {{ $errors->first('nama') }}
+                                @endif
                             </div>
                             <div class="input-group mb-3">
                                 <div class="input-group-append">
                                     <span class="input-group-text"><i class="fas fa-envelope"></i></span>
                                 </div>
-                                <input type="text" name="" class="form-control input_user" value="" placeholder="email">
+                                <input type="text" name="email" class="form-control input_user{{ $errors->has('email') ? ' border-error' : '' }}" value="{{ old('email') }}" placeholder="email">
+                            </div>
+                            <div class="text-error">
+                                @if ($errors->has('email'))
+                                    {{ $errors->first('email') }}
+                                @endif
                             </div>
                             <div class="input-group mb-3">
                                 <div class="input-group-append">
                                     <span class="input-group-text"><i class="fas fa-phone"></i></span>
                                 </div>
-                                <input type="text" name="" class="form-control input_user" value="" placeholder="nomor hp">
+                                <input type="text" name="nomor_hp" class="form-control input_user{{ $errors->has('nomor_hp') ? ' border-error' : '' }}" value="{{ old('nomor_hp') }}" placeholder="nomor hp">
+                            </div>
+                            <div class="text-error">
+                                @if ($errors->has('nomor_hp'))
+                                    {{ $errors->first('nomor_hp') }}
+                                @endif
                             </div>
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
+                                <input class="form-check-input" type="radio" name="jenkel" id="inlineRadio1" value="L" {{ old('jenkel')=="L" ? 'checked='.'"'.'checked'.'"' : '' }}>
                                 <label class="form-check-label" for="inlineRadio1">Laki-Laki</label>
                             </div>
                             <div class="form-check form-check-inline mb-3">
-                                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
+                                <input class="form-check-input" type="radio" name="jenkel" id="inlineRadio2" value="P" {{ old('jenkel')=="P" ? 'checked='.'"'.'checked'.'"' : '' }}>
                                 <label class="form-check-label" for="inlineRadio2">Perempuan</label>
+                            </div>
+                            <div class="text-error">
+                                @if ($errors->has('jenkel'))
+                                    {{ 'jenis kelamin tidak boleh kosong' }}
+                                @endif
                             </div>
                             <div class="input-group mb-3">
                                 <div class="input-group-append">
                                     <span class="input-group-text"><i class="fas fa-address-card"></i></span>
                                 </div>
-                                <input type="text" name="" class="form-control input_user" value="" placeholder="alamat">
+                                <input type="text" name="alamat" class="form-control input_user{{ $errors->has('alamat') ? ' border-error' : '' }}" value="{{ old('alamat') }}" placeholder="alamat">
+                            </div>
+                            <div class="text-error">
+                                @if ($errors->has('alamat'))
+                                    {{ $errors->first('alamat') }}
+                                @endif
                             </div>
                             <div class="input-group mb-3">
                                 <div class="input-group-append">
                                     <span class="input-group-text"><i class="fas fa-user"></i></span>
                                 </div>
-                                <input type="text" name="username" class="form-control input_user" value="" placeholder="username">
+                                <input type="text" name="username" class="form-control input_user{{ $errors->has('username') ? ' border-error' : '' }}" value="{{ old('username') }}" placeholder="username">
+                            </div>
+                            <div class="text-error">
+                                @if ($errors->has('username'))
+                                    {{ $errors->first('username') }}
+                                @endif
                             </div>
                             <div class="input-group mb-3">
                                 <div class="input-group-append">
                                     <span class="input-group-text"><i class="fas fa-key"></i></span>
                                 </div>
-                                <input type="password" name="" class="form-control input_pass" value="" placeholder="password">
+                                <input type="password" name="password" class="form-control input_pass{{ $errors->has('password') ? ' border-error' : '' }}" value="" placeholder="password">
+                            </div>
+                            <div class="text-error">
+                                @if ($errors->has('password'))
+                                    {{ $errors->first('password') }}
+                                @endif
                             </div>
                             <div class="input-group mb-3">
                                 <div class="input-group-append">
                                     <span class="input-group-text"><i class="fas fa-key"></i></span>
                                 </div>
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password" placeholder="konfirmasi password">
+                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" autocomplete="new-password" placeholder="konfirmasi password">
                             </div>
                             <div class="form-group">
                                 <div class="custom-control custom-checkbox">
-                                    <input type="checkbox" class="custom-control-input" id="customControlInline">
+                                    <input type="checkbox" class="custom-control-input" name="setuju" id="customControlInline" value="1">
                                     <label class="custom-control-label label-persetujuan" for="customControlInline">Saya telah membaca dan menyetujui <a href="#">Aturan Penggunaan</a> dan <a href="#">Kebijakan Privasi</a> Warung Mitra</label>
                                 </div>
+                            </div>
+                            <div class="text-error">
+                                @if ($errors->has('setuju'))
+                                    {{ 'persetujuan belum di centang' }}
+                                @endif
                             </div>
                             <div class="d-flex justify-content-center mt-3">
                                 <button type="submit" name="button" class="btn login_btn btn-block">Register</button>

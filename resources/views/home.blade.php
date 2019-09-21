@@ -14,9 +14,9 @@
                         </div>
                     @endif
 
-                    You are logged in! 
+                    You are logged in! hghgh
                     @auth
-                    {{ Auth::user()->nama }}
+                        {{ Auth::user()->nama }}
                     @endauth
                 </div>
             </div>
