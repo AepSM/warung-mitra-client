@@ -28,4 +28,17 @@ class HomeController extends Controller
         $produks = Produk::orderBy('id', 'desc')->paginate(30);
         return view('home', ['kategoris' => $kategoris, 'produks' => $produks, 'sliders' => $sliders, 'slidersides' => $slidersides]);
     }
+
+    public function search(Request $request)
+    {
+        $data = $request->attr;
+
+        $kategoris = Kategori::get();
+        $produks = Produk::where('nama', 'LIKE', '%'. $data . '%')
+        ->orWhereHas('data_kategori', function($query) use ($data) {
+                $query->where('nama', 'LIKE', '%'. $data . '%');
+        })
+        ->paginate(30);
+        return view('search', ['kategoris' => $kategoris, 'produks' => $produks]);
+    }
 }

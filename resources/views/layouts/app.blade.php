@@ -48,9 +48,9 @@
                         </div> <!-- brand-wrap.// -->
                     </div>
                     <div class="col-lg-13-24 col-sm-12 order-3 order-lg-2">
-                        <form action="#">
+                        <form action="{{ route('search') }}" method="GET">
                             <div class="input-group w-100">
-                                <input type="text" class="form-control" style="width:60%;" placeholder="Search">                        
+                                <input type="text" class="form-control" name="attr" style="width:60%;" placeholder="Search">                        
                                 <div class="input-group-append">
                                     <button class="btn btn-primary" type="submit">
                                         <i class="fa fa-search"></i>
@@ -113,7 +113,7 @@
                             <a class="nav-link dropdown-toggle" href="#" id="dropdown07" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><strong>All category</strong></a>
                             <div class="dropdown-menu" aria-labelledby="dropdown07">
                                 @foreach ($kategoris as $kategori)
-                                    <a class="dropdown-item" href="#">{{ $kategori->nama }}</a>
+                                    <a class="dropdown-item" href="{{ url('search?attr=' . $kategori->nama) }}">{{ $kategori->nama }}</a>
                                 @endforeach
                             </div>
                         </li>
