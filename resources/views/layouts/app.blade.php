@@ -74,7 +74,7 @@
                                         <a class="dropdown-toggle" href="#" id="dropdown07" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Setting</a>
                                         
                                         <div class="dropdown-menu" aria-labelledby="dropdown07">
-                                            <a class="dropdown-item" href="#">Profil</a>
+                                            <a class="dropdown-item" href="{{ route('profil') }}">Profil</a>
                                             <a class="dropdown-item" href="{{ route('logout') }}"
                                                 onclick="event.preventDefault();
                                                 document.getElementById('logout-form').submit();">
@@ -112,19 +112,9 @@
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="dropdown07" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><strong>All category</strong></a>
                             <div class="dropdown-menu" aria-labelledby="dropdown07">
-                                <a class="dropdown-item" href="#">Bahan Masak</a>
-                                <a class="dropdown-item" href="#">Barang Paketan</a>
-                                <a class="dropdown-item" href="#">Kebutuhan Bayi</a>
-                                <a class="dropdown-item" href="#">Kesehatan & Kecantikan</a>
-                                <a class="dropdown-item" href="#">Kopi</a>
-                                <a class="dropdown-item" href="#">Makanan</a>
-                                <a class="dropdown-item" href="#">Mie</a>
-                                <a class="dropdown-item" href="#">Minuman</a>
-                                <a class="dropdown-item" href="#">Pakaian</a>
-                                <a class="dropdown-item" href="#">Perlengkapan Mandi</a>
-                                <a class="dropdown-item" href="#">Perlengkapan Rumah Tangga</a>
-                                <a class="dropdown-item" href="#">Renceng</a>
-                                <a class="dropdown-item" href="#">Sembako</a>
+                                @foreach ($kategoris as $kategori)
+                                    <a class="dropdown-item" href="#">{{ $kategori->nama }}</a>
+                                @endforeach
                             </div>
                         </li>
                     </ul>
@@ -133,9 +123,7 @@
         </nav>
     </header> <!-- section-header.// -->
 
-    <main class="py-4">
-        @yield('content')
-    </main>
+    @yield('content')
 
     <!-- ========================= FOOTER ========================= -->
     <footer class="section-footer bg-secondary">

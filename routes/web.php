@@ -11,8 +11,12 @@
 |
 */
 
-Route::get('/', function () { return view('home'); });
+Route::get('/', 'HomeController@index');
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::group(['middleware' => 'auth'], function () {
+    Route::get('/profil', 'ProfilController@index')->name('profil');
+});
