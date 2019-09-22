@@ -11,9 +11,13 @@ class ProfilController extends Controller
 {
     public function index()
     {
-        $email = Auth::user()->email;
-        $orderSementaras = OrderSementara::where('kode', $email)->get();
-        $countOrder = count($orderSementaras);
+        if (Auth::user()) {
+            $email = Auth::user()->email;
+            $orderSementaras = OrderSementara::where('kode', $email)->get();
+            $countOrder = count($orderSementaras);
+        } else {
+            $countOrder = 0;
+        }
         
         $kategoris = Kategori::get();
         $profil = Auth::user();

@@ -113,7 +113,7 @@
                 <div class="collapse navbar-collapse" id="main_nav">
                     <ul class="navbar-nav">
                         <li class="nav-item"><a class="nav-link" href="/">Beranda</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#">Kontak</a></li>
+                        {{-- <li class="nav-item"><a class="nav-link" href="#">Kontak</a></li> --}}
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="dropdown07" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><strong>All category</strong></a>
                             <div class="dropdown-menu" aria-labelledby="dropdown07">
@@ -136,31 +136,22 @@
             <section class="footer-top padding-top">
                 <div class="row">
                     <aside class="col-sm-3 col-md-3 white">
-                        <h5 class="title">Customer Services</h5>
+                        <h5 class="title">Warung Mitra</h5>
                         <ul class="list-unstyled">
-                            <li> <a href="#">Help center</a></li>
-                            <li> <a href="#">Money refund</a></li>
-                            <li> <a href="#">Terms and Policy</a></li>
+                            <li> <a href="#">Aturan Penggunaan</a></li>
+                            <li> <a href="#">Kebijakan Privasi</a></li>
                         </ul>
                     </aside>
                     <aside class="col-sm-3  col-md-3 white">
-                        <h5 class="title">My Account</h5>
+                        <h5 class="title">Pelanggan</h5>
                         <ul class="list-unstyled">
-                            <li> <a href="#"> User Login </a></li>
-                            <li> <a href="#"> User register </a></li>
-                            <li> <a href="#"> Account Setting </a></li>
-                            <li> <a href="#"> My Orders </a></li>
-                            <li> <a href="#"> My Wishlist </a></li>
+                            <li> <a href="#"> Cara Beli </a></li>
                         </ul>
                     </aside>
                     <aside class="col-sm-3  col-md-3 white">
-                        <h5 class="title">About</h5>
+                        <h5 class="title">Tentang</h5>
                         <ul class="list-unstyled">
-                            <li> <a href="#"> Our history </a></li>
-                            <li> <a href="#"> How to buy </a></li>
-                            <li> <a href="#"> Delivery and payment </a></li>
-                            <li> <a href="#"> Advertice </a></li>
-                            <li> <a href="#"> Partnership </a></li>
+                            <li> <a href="#"> Sejarah </a></li>
                         </ul>
                     </aside>
                     <aside class="col-sm-3">

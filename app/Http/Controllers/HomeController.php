@@ -25,9 +25,13 @@ class HomeController extends Controller
     
     public function index()
     {
-        $email = Auth::user()->email;
-        $orderSementaras = OrderSementara::where('kode', $email)->get();
-        $countOrder = count($orderSementaras);
+        if (Auth::user()) {
+            $email = Auth::user()->email;
+            $orderSementaras = OrderSementara::where('kode', $email)->get();
+            $countOrder = count($orderSementaras);
+        } else {
+            $countOrder = 0;
+        }
 
         $kategoris = Kategori::get();
         $sliders = Slider::get();
@@ -45,9 +49,13 @@ class HomeController extends Controller
 
     public function search(Request $request)
     {
-        $email = Auth::user()->email;
-        $orderSementaras = OrderSementara::where('kode', $email)->get();
-        $countOrder = count($orderSementaras);
+        if (Auth::user()) {
+            $email = Auth::user()->email;
+            $orderSementaras = OrderSementara::where('kode', $email)->get();
+            $countOrder = count($orderSementaras);
+        } else {
+            $countOrder = 0;
+        }        
 
         $data = $request->attr;
 
