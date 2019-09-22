@@ -98,7 +98,7 @@
                                 <div class="icontext">
                                     <div class="icon-wrap icon-sm round border"><i class="fa fa-shopping-cart"></i></div>
                                 </div>
-                                <span class="badge badge-pill badge-danger notify notif-cart" id="notifcart"></span>
+                                <span class="badge badge-pill badge-danger notify notif-cart" id="notifcart">{{ $order_sementara == 0 ? '' : $order_sementara }}</span>
                             </a>
                         </div> <!-- widgets-wrap.// -->
                     </div> <!-- col.// -->

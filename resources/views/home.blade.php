@@ -37,8 +37,8 @@
                         <figure class="itemside">
                             <div class="aside"><div class="img-wrap p-2 border-right"><img class="img-sm" src="http://warung-mitra-admin.test/img/{{ $sliderside->gambar1 }}"></div></div>
                             <figcaption class="text-wrap align-self-center">
-                                <h6 class="title"></h6>
-                                <a href="#">More items</a>
+                                <h6 class="title">{{ substr($sliderside->nama,0,50) }}</h6>
+                                <a href="{{ url('search?attr=') }}">Lihat produk lainnya</a>
                             </figcaption>
                         </figure>
                     </div>

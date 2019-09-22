@@ -26,7 +26,7 @@
                             <div class="form-group row">
                                 <label for="jenkel" class="col-sm-4 col-form-label">Jenis Kelamin</label>
                                 <div class="col-sm-8">
-                                    <input type="text" readonly class="form-control-plaintext" id="jenkel" value="{{ $profil->jenkel }}">
+                                    <input type="text" readonly class="form-control-plaintext" id="jenkel" value="{{ $profil->jenkel == 'L' ? 'Laki-Laki' : 'Perempuan' }}">
                                 </div>
                             </div>
                             <div class="form-group row">
