@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class OrderSementara extends Model
 {
     protected $fillable = [
-        'produk_id', 'qty', 'harga', 'kode'
+        'produk_id', 'qty', 'kode'
     ];
     
     public function data_produk()
