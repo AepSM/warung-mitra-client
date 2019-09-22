@@ -34,6 +34,9 @@
         .logo-text {
             font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
         }
+        .link-logo, .link-logo:hover {
+            color: black;
+        }
     </style>
 </head>
 <body>
@@ -43,8 +46,10 @@
                 <div class="row align-items-center">
                     <div class="col-lg-5-24 col-sm-5 col-4">
                         <div class="brand-wrap">
-                            <img class="logo" src="{{ asset('client/images/logos/logo-wm.png') }}">
-                            <h2 class="logo-text">Warung Mitra</h2>
+                            <a href="{{ url('/') }}" class="link-logo">
+                                <img class="logo" src="{{ asset('client/images/logos/logo-wm.png') }}">
+                                <h2 class="logo-text">Warung Mitra</h2>
+                            </a>
                         </div> <!-- brand-wrap.// -->
                     </div>
                     <div class="col-lg-13-24 col-sm-12 order-3 order-lg-2">
