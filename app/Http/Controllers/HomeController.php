@@ -7,6 +7,7 @@ use App\Slider;
 use App\Kategori;
 use App\OrderSementara;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
@@ -96,17 +97,18 @@ class HomeController extends Controller
     public function masukkan_keranjang(Request $request, $id)
     {
         if (Auth::user()) {
-            OrderSementara::create([
-                'produk_id' => $id,
-                'qty' => 1,
-                'kode' => Auth::user()->email
-            ]);
-
             $produk = Produk::find($id);
             $produkStok = $produk->stok;
             $sisaStok = $produkStok - 1;
             $produk->stok = $sisaStok;
             $produk->save();
+
+            OrderSementara::create([
+                'produk_id' => $id,
+                'qty' => 1,
+                'harga' => $produk->harga,
+                'kode' => Auth::user()->email
+            ]);
 
             if ($produk->stok == 0) {
                 # code...
@@ -119,5 +121,48 @@ class HomeController extends Controller
         } else {
             return redirect()->route('login');
         }
+    }
+
+    public function keranjang()
+    {
+        $email = Auth::user()->email;
+        $orderSementaras = OrderSementara::select(
+                DB::raw('sum(qty) as sumQty, produk_id, sum(harga) as sumHarga')
+            )
+            ->where('kode', $email)
+            ->groupBy('produk_id')
+            ->with('data_produk')
+            ->get();
+
+        if (Auth::user()) {
+            $email = Auth::user()->email;
+            $order_sementaras = OrderSementara::where('kode', $email)->get();
+            $countOrder = count($order_sementaras);
+        } else {
+            $countOrder = 0;
+        }
+
+        $kategoris = Kategori::get();
+
+        return view('keranjang', [
+                'order_sementara' => $countOrder,
+                'kategoris' => $kategoris,
+                'orderSementaras' => $orderSementaras
+            ]);
+    }
+
+    public function hapus_keranjang($id)
+    {
+        $orderSementara = OrderSementara::where('produk_id', $id)->first();
+
+        $orderSementara->delete();
+
+        $produk = Produk::find($id);
+        $produkStok = $produk->stok;
+        $sisaStok = $produkStok + 1;
+        $produk->stok = $sisaStok;
+        $produk->save();
+
+        return redirect()->route('keranjang');
     }
 }
