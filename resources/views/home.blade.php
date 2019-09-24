@@ -53,7 +53,7 @@
     <div class="container">
         <div id="produk" class="row-sm">
             @foreach ($produks as $produk)                
-                <a href="{{ route('detail_produk', ['id' => $produk->id]) }}">
+                <a href="{{ route('detail_produk', ['id' => $produk->id]) }}" target="blank">
                     <div class="col-md-2 col-sm-6">
                         <figure class="card card-product">
                             <div class="img-wrap"> <img src="http://warung-mitra-admin.test/img/{{ $produk->gambar1 }}"></div>

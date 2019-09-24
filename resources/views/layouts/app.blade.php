@@ -94,7 +94,7 @@
                                 @endauth
                                 
                             </div>
-                            <a href="{{ route('keranjang') }}" class="widget-header border-left pl-3 ml-3 shopping-cart">
+                            <a href="{{ route('keranjang.index') }}" class="widget-header border-left pl-3 ml-3 shopping-cart">
                                 <div class="icontext">
                                     <div class="icon-wrap icon-sm round border"><i class="fa fa-shopping-cart"></i></div>
                                 </div>

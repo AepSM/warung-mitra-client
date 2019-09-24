@@ -68,10 +68,10 @@
                                 @if ($produk->stok > 0)
                                     <div class="row">
                                         <div class="col-sm">
-                                            <a href="{{ route('masukkan_keranjang', ['id' => $produk->id]) }}" id="btnCart" class="btn btn-warning btn-block btn-cart" data-id="{{ $produk->id }}"> <i class="fa fa-shopping-cart"></i> Masukkan Keranjang </a>
+                                            <a href="{{ route('keranjang.masukkan_keranjang', ['id' => $produk->id]) }}" id="btnCart" class="btn btn-warning btn-block btn-cart" data-id="{{ $produk->id }}"> <i class="fa fa-shopping-cart"></i> Masukkan Keranjang </a>
                                         </div>
                                         <div class="col-sm">
-                                            <a href="#" class="btn btn-warning btn-block btn-beli"> Beli </a>
+                                            <a href="{{ route('keranjang.beli', ['id' => $produk->id]) }}" class="btn btn-warning btn-block btn-beli"> Beli </a>
                                         </div>
                                     </div>                                    
                                 @endif
