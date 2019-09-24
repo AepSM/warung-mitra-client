@@ -22,7 +22,7 @@
                 </div> <!-- card.// -->
                 <hr>
                 <div class="form-group text-right">
-                    <a href="#" class="btn btn-success">Lanjut ke metode pembayaran</a>
+                    <a href="#" class="btn btn-success"> Selanjutnya <i class="fa fa-arrow-right"></i></a>
                 </div>    
             </main> <!-- col.// -->
         </div>    
@@ -70,7 +70,7 @@
                             "      </figure>" +
                             "   </td>" +
                             "   <td>" +
-                            "       <input type=\"number\" id=\"quantity\" data-id=\"" + value.id + "\" name=\"quantity\" class=\"form-control input-number\" value=\"" + value.sumQty + "\" min=\"1\" max=\"100\">" +
+                            "       <input type=\"number\" id=\"quantity\" data-id=\"" + value.produk_id + "\" name=\"quantity\" class=\"form-control input-number\" value=\"" + value.sumQty + "\" min=\"1\" max=\"100\">" +
                             "   </td>" +
                             "   <td>" + 
                             "       <div class=\"price-wrap\">" +
@@ -87,6 +87,7 @@
             })
         }
         $('tbody').on('change', '.input-number', function() {
+            $('tbody').empty();
             var produkId = $(this).attr('data-id');
             var valQty = $(this).val();
 
@@ -99,7 +100,7 @@
                     qty: valQty
                 },
                 success: function(response) {
-                    console.log(response);
+                    tampil_keranjang();
                 }
             });
         });

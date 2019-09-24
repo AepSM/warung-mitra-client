@@ -38,12 +38,22 @@ class KeranjangController extends Controller
             $produk->stok = $sisaStok;
             $produk->save();
 
-            OrderSementara::create([
-                'produk_id' => $id,
-                'qty' => 1,
-                'harga' => $produk->harga,
-                'kode' => Auth::user()->email
-            ]);
+            $email = Auth::user()->email;
+            $order_sementara = OrderSementara::where('kode', $email)->where('produk_id', $id)->first();
+
+            if ($order_sementara) {
+                $order_sementara->qty = $order_sementara->qty + 1;
+                $order_sementara->harga = $order_sementara->harga + $produk->harga;
+                $order_sementara->save();
+            } else {
+                OrderSementara::create([
+                    'produk_id' => $id,
+                    'qty' => 1,
+                    'harga' => $produk->harga,
+                    'kode' => Auth::user()->email
+                ]);
+            }
+
 
             if ($produk->stok == 0) {
                 # code...
@@ -67,12 +77,21 @@ class KeranjangController extends Controller
             $produk->stok = $sisaStok;
             $produk->save();
 
-            OrderSementara::create([
-                'produk_id' => $id,
-                'qty' => 1,
-                'harga' => $produk->harga,
-                'kode' => Auth::user()->email
-            ]);
+            $email = Auth::user()->email;
+            $order_sementara = OrderSementara::where('kode', $email)->where('produk_id', $id)->first();
+
+            if ($order_sementara) {
+                $order_sementara->qty = $order_sementara->qty + 1;
+                $order_sementara->harga = $order_sementara->harga + $produk->harga;
+                $order_sementara->save();
+            } else {
+                OrderSementara::create([
+                    'produk_id' => $id,
+                    'qty' => 1,
+                    'harga' => $produk->harga,
+                    'kode' => Auth::user()->email
+                ]);
+            }
 
             return redirect()->route('keranjang.index');
         } else {
@@ -102,15 +121,15 @@ class KeranjangController extends Controller
         $qty = $request->qty;
         $email = Auth::user()->email;
 
-        // $order_sementara = OrderSementara::where('kode', $email)->get();
-        // $order_sementara->delete();
+        $order_sementara = OrderSementara::where('kode', $email)->where('produk_id', $id)->first();
+        $order_sementara->delete();
 
         $produk = Produk::find($id);
 
         $orderSementaras = OrderSementara::create([
             'produk_id' => $id,
             'qty' => $qty,
-            'harga' => $produk->harga,
+            'harga' => $produk->harga * $qty,
             'kode' => $email
         ]);
 
