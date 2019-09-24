@@ -94,75 +94,75 @@ class HomeController extends Controller
             ]);
     }
 
-    public function masukkan_keranjang(Request $request, $id)
-    {
-        if (Auth::user()) {
-            $produk = Produk::find($id);
-            $produkStok = $produk->stok;
-            $sisaStok = $produkStok - 1;
-            $produk->stok = $sisaStok;
-            $produk->save();
+    // public function masukkan_keranjang(Request $request, $id)
+    // {
+    //     if (Auth::user()) {
+    //         $produk = Produk::find($id);
+    //         $produkStok = $produk->stok;
+    //         $sisaStok = $produkStok - 1;
+    //         $produk->stok = $sisaStok;
+    //         $produk->save();
 
-            OrderSementara::create([
-                'produk_id' => $id,
-                'qty' => 1,
-                'harga' => $produk->harga,
-                'kode' => Auth::user()->email
-            ]);
+    //         OrderSementara::create([
+    //             'produk_id' => $id,
+    //             'qty' => 1,
+    //             'harga' => $produk->harga,
+    //             'kode' => Auth::user()->email
+    //         ]);
 
-            if ($produk->stok == 0) {
-                # code...
-                $request->session()->flash('stok', 'Stok habis');
-            }
+    //         if ($produk->stok == 0) {
+    //             # code...
+    //             $request->session()->flash('stok', 'Stok habis');
+    //         }
             
-            $request->session()->flash('status', 'Berhasil masuk keranjang');
+    //         $request->session()->flash('status', 'Berhasil masuk keranjang');
 
-            return redirect()->route('detail_produk', ['id' => $id]);
-        } else {
-            return redirect()->route('login');
-        }
-    }
+    //         return redirect()->route('detail_produk', ['id' => $id]);
+    //     } else {
+    //         return redirect()->route('login');
+    //     }
+    // }
 
-    public function keranjang()
-    {
-        $email = Auth::user()->email;
-        $orderSementaras = OrderSementara::select(
-                DB::raw('sum(qty) as sumQty, produk_id, sum(harga) as sumHarga')
-            )
-            ->where('kode', $email)
-            ->groupBy('produk_id')
-            ->with('data_produk')
-            ->get();
+    // public function keranjang()
+    // {
+    //     $email = Auth::user()->email;
+    //     $orderSementaras = OrderSementara::select(
+    //             DB::raw('sum(qty) as sumQty, produk_id, sum(harga) as sumHarga')
+    //         )
+    //         ->where('kode', $email)
+    //         ->groupBy('produk_id')
+    //         ->with('data_produk')
+    //         ->get();
 
-        if (Auth::user()) {
-            $email = Auth::user()->email;
-            $order_sementaras = OrderSementara::where('kode', $email)->get();
-            $countOrder = count($order_sementaras);
-        } else {
-            $countOrder = 0;
-        }
+    //     if (Auth::user()) {
+    //         $email = Auth::user()->email;
+    //         $order_sementaras = OrderSementara::where('kode', $email)->get();
+    //         $countOrder = count($order_sementaras);
+    //     } else {
+    //         $countOrder = 0;
+    //     }
 
-        $kategoris = Kategori::get();
+    //     $kategoris = Kategori::get();
 
-        return view('keranjang', [
-                'order_sementara' => $countOrder,
-                'kategoris' => $kategoris,
-                'orderSementaras' => $orderSementaras
-            ]);
-    }
+    //     return view('keranjang', [
+    //             'order_sementara' => $countOrder,
+    //             'kategoris' => $kategoris,
+    //             'orderSementaras' => $orderSementaras
+    //         ]);
+    // }
 
-    public function hapus_keranjang($id)
-    {
-        $orderSementara = OrderSementara::where('produk_id', $id)->first();
+    // public function hapus_keranjang($id)
+    // {
+    //     $orderSementara = OrderSementara::where('produk_id', $id)->first();
 
-        $orderSementara->delete();
+    //     $orderSementara->delete();
 
-        $produk = Produk::find($id);
-        $produkStok = $produk->stok;
-        $sisaStok = $produkStok + 1;
-        $produk->stok = $sisaStok;
-        $produk->save();
+    //     $produk = Produk::find($id);
+    //     $produkStok = $produk->stok;
+    //     $sisaStok = $produkStok + 1;
+    //     $produk->stok = $sisaStok;
+    //     $produk->save();
 
-        return redirect()->route('keranjang');
-    }
+    //     return redirect()->route('keranjang');
+    // }
 }

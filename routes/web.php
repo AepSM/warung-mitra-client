@@ -18,9 +18,13 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 Route::any('/search', 'HomeController@search')->name('search');
 Route::get('/detail_produk/{id}', 'HomeController@detail_produk')->name('detail_produk');
-Route::get('/masukkan_keranjang/{id}', 'HomeController@masukkan_keranjang')->name('masukkan_keranjang');
-Route::get('/keranjang', 'HomeController@keranjang')->name('keranjang');
-Route::get('/hapus_keranjang/{id}', 'HomeController@hapus_keranjang')->name('hapus_keranjang');
+
+Route::get('/tampil_keranjang', 'KeranjangController@index')->name('keranjang.index');
+Route::get('/masukkan_keranjang/{id}', 'KeranjangController@masukkan_keranjang')->name('keranjang.masukkan_keranjang');
+Route::get('/beli_keranjang/{id}', 'KeranjangController@beli')->name('keranjang.beli');
+Route::get('/data_keranjang', 'KeranjangController@data')->name('keranjang.data');
+Route::post('/tambah_data_keranjang', 'KeranjangController@tambah_data')->name('keranjang.tambah_data');
+Route::get('/hapus_keranjang/{id}', 'KeranjangController@hapus')->name('keranjang.hapus');
 
 Route::group(['middleware' => 'auth'], function () {
     Route::get('/profil', 'ProfilController@index')->name('profil');
