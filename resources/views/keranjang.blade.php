@@ -70,15 +70,15 @@
                             "      </figure>" +
                             "   </td>" +
                             "   <td>" +
-                            "       <input type=\"number\" id=\"quantity\" data-id=\"" + value.produk_id + "\" name=\"quantity\" class=\"form-control input-number\" value=\"" + value.sumQty + "\" min=\"1\" max=\"100\">" +
+                            "       <input type=\"number\" id=\"quantity\" data-id=\"" + value.produk_id + "\" name=\"quantity\" class=\"form-control input-number\" value=\"" + value.qty + "\" min=\"1\" max=\"100\">" +
                             "   </td>" +
                             "   <td>" + 
                             "       <div class=\"price-wrap\">" +
-                            "           <var class=\"\">Rp. " + rupiah(value.sumHarga) + "</var>" + 
+                            "           <var class=\"\">Rp. " + rupiah(value.harga) + "</var>" + 
                             "       </div>" +
                             "   </td>" +
                             "   <td class=\"text-right\"> " +
-                            "       <a href=\"\" class=\"btn btn-danger\"> × </a>" +
+                            "       <a href=\"{{ url('hapus_keranjang') }}/" + value.id + "\" class=\"btn btn-danger\"> × </a>" +
                             "   </td>" +
                             "</tr>";
                         $('tbody').append(data);

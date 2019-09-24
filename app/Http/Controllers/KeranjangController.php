@@ -102,11 +102,7 @@ class KeranjangController extends Controller
     public function data()
     {
         $email = Auth::user()->email;
-        $orderSementaras = OrderSementara::select(
-                DB::raw('sum(qty) as sumQty, produk_id, sum(harga) as sumHarga')
-            )
-            ->where('kode', $email)
-            ->groupBy('produk_id')
+        $orderSementaras = OrderSementara::where('kode', $email)
             ->with('data_produk')
             ->get();
 
@@ -138,16 +134,18 @@ class KeranjangController extends Controller
         ]);
     }
 
-    public function hapus()
+    public function hapus($id)
     {
-        $orderSementara = OrderSementara::where('produk_id', $id)->first();
+        $orderSementara = OrderSementara::where('id', $id)->first();
+
+        $produk = Produk::find($orderSementara->produk_id);
+        $produkStok = $produk->stok;
+        $sisaStok = $produkStok + $orderSementara->qty;
+        $produk->stok = $sisaStok;
+        $produk->save();
 
         $orderSementara->delete();
 
-        $produk = Produk::find($id);
-        $produkStok = $produk->stok;
-        $sisaStok = $produkStok + 1;
-        $produk->stok = $sisaStok;
-        $produk->save();
+        return redirect()->route('keranjang.index');
     }
 }
