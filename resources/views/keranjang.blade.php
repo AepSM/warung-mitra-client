@@ -22,7 +22,7 @@
                 </div> <!-- card.// -->
                 <hr>
                 <div class="form-group text-right">
-                    <a href="#" class="btn btn-success"> Selanjutnya <i class="fa fa-arrow-right"></i></a>
+                    <a href="{{ route('order.index') }}" class="btn btn-warning"> Selanjutnya <i class="fa fa-arrow-right"></i></a>
                 </div>    
             </main> <!-- col.// -->
         </div>    
