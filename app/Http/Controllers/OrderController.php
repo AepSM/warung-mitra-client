@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Order;
 use App\Kategori;
+use Carbon\Carbon;
+use App\OrderDetail;
 use App\OrderSementara;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -22,5 +25,45 @@ class OrderController extends Controller
             'orders' => $orders,
             'total_harga' => $total_harga
         ]);
+    }
+
+    public function store(Request $request)
+    {
+        \Validator::make($request->all(), [
+            "kecamatan" => "required"
+        ])->validate();
+
+        $kode = str_random(6);
+
+        $order = Order::create([
+            "kode" => $kode,
+            "customer_id" => Auth::user()->id,
+            "tanggal" => Carbon::now(),
+            "nama" => $request->nama,
+            "alamat" => $request->alamat,
+            "kecamatan" => $request->kecamatan,
+            "total_harga" => $request->total_harga,
+            "ongkir" => $request->ongkir,
+            "total_bayar" => $request->total_bayar,
+            "status_bayar" => 1
+        ]);
+        
+        $order_sementara_inserts = OrderSementara::where('kode', Auth::user()->email)->get();
+        foreach ($order_sementara_inserts as $key => $order_sementara_insert) {
+            OrderDetail::create([
+                'kode' => $kode,
+                'produk_id' => $order_sementara_insert->produk_id,
+                'qty' => $order_sementara_insert->qty,
+                'harga' => $order_sementara_insert->harga
+            ]);
+        }
+        
+
+        $order_sementaras = OrderSementara::where('kode', Auth::user()->email)->get();
+        foreach ($order_sementaras as $key => $order_sementara) {
+            $order_sementara->delete();
+        }
+
+        return redirect()->route('pembayaran');
     }
 }

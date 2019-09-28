@@ -33,6 +33,13 @@
             .table-bayar .nominal {
                 text-align: right;
             }
+            .text-error {
+                height: 10px;
+                margin-top: -10;
+                margin-bottom: 20px;
+                font-size: 12px;
+                color: red;
+            }
         </style>
     </head>
     <body>
@@ -57,111 +64,125 @@
                 </div> <!-- container.// -->
             </section> <!-- header-main .// -->
         </header> <!-- section-header.// -->
-        <section class="section-content bg padding-y border-top">
-            <div class="container">        
-                <div class="row">
-                    <main class="col-sm-8">        
-                        <div class="card">
-                            <div class="card-body">
-                                <h5 class="card-title">Detail Pembeli</h5>
-                                <div class="form-group row">
-                                    <label for="nama" class="col-sm-4 col-form-label">Nama Lengkap</label>
-                                    <div class="col-sm-8">
-                                        <input type="text" class="form-control-plaintext" id="nama" value="{{ Auth::user()->nama }}">
+        <form action="{{ route('order.store') }}" method="POST">
+            @csrf
+            <section class="section-content bg padding-y border-top">
+                <div class="container">        
+                    <div class="row">
+                        <main class="col-sm-8">        
+                            <div class="card">
+                                <div class="card-body">
+                                    <h5 class="card-title">Detail Pembeli</h5>
+                                    <div class="form-group row">
+                                        <label for="nama" class="col-sm-4 col-form-label">Nama Lengkap</label>
+                                        <div class="col-sm-8">
+                                            <input type="text" class="form-control-plaintext" name="nama" id="nama" value="{{ Auth::user()->nama }}">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="nomor_hp" class="col-sm-4 col-form-label">Nomor HP</label>
+                                        <div class="col-sm-8">
+                                            <input type="text" class="form-control-plaintext" name="nomor_hp" id="nomor_hp" value="{{ Auth::user()->nomor_hp }}">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="alamat" class="col-sm-4 col-form-label">Alamat Lengkap</label>
+                                        <div class="col-sm-8">
+                                            <input type="text" class="form-control-plaintext" name="alamat" id="alamat" value="{{ Auth::user()->alamat }}">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="kecamatan" class="col-sm-4 col-form-label">Kecamatan</label>
+                                        <div class="col-sm-4">
+                                            <select name="kecamatan" name="kecamatan" id="kecamatan" class="form-control kecamatan">
+                                                <option value="">--Pilih Kecamatan--</option>
+                                                <option value="1">Cilacap 1</option>
+                                                <option value="2">Cilacap 2</option>
+                                                <option value="3">Cilacap 3</option>
+                                            </select>
+                                        </div>
+                                        <div class="text-error">
+                                            @if ($errors->has('kecamatan'))
+                                                {{ $errors->first('kecamatan') }}
+                                            @endif
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="form-group row">
-                                    <label for="nomor_hp" class="col-sm-4 col-form-label">Nomor HP</label>
-                                    <div class="col-sm-8">
-                                        <input type="text" class="form-control-plaintext" id="nomor_hp" value="{{ Auth::user()->nomor_hp }}">
-                                    </div>
+                            </div> <!-- card.// -->
+                            <hr>
+                            <div class="card">
+                                <div class="card-body">
+                                    <h5 class="card-title">Data Produk</h5>
+                                    <table class="table table-hover shopping-cart-wrap">
+                                        <thead class="text-muted">
+                                            <tr>
+                                                <th scope="col">Produk</th>
+                                                <th scope="col" width="120">Quantity</th>
+                                                <th scope="col" width="120">Harga</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach ($orders as $key => $order)   
+                                            <input type="hidden" name="produk[]" value="produk"> 
+                                            <input type="hidden" name="nama_produk{{ $key }}" value="{{ $order->data_produk->nama }}">
+                                            <input type="hidden" name="qty{{ $key }}" value="{{ $order->qty }}">
+                                            <input type="hidden" name="harga{{ $key }}" value="{{ $order->data_produk->harga }}">
+                                            <tr>
+                                                <td>
+                                                    <figure class="media">
+                                                        <div class="img-wrap"><img src="http://warung-mitra-admin.test/img/{{ $order->data_produk->gambar1 }}" class="img-thumbnail img-sm"></div>
+                                                        <figcaption class="media-body">
+                                                            <h6 class="title text-truncate">{{ $order->data_produk->nama }}</h6>
+                                                        </figcaption>
+                                                    </figure> 
+                                                </td>
+                                                <td class="text-center">
+                                                    {{ $order->qty }}
+                                                </td>
+                                                <td>
+                                                    <div class="price-wrap"> 
+                                                        <var class="price">Rp. {{ rupiah($order->data_produk->harga) }}</var> 
+                                                    </div> <!-- price-wrap .// -->
+                                                </td>
+                                            </tr>
+                                            @endforeach
+                                        </tbody>
+                                    </table>
                                 </div>
-                                <div class="form-group row">
-                                    <label for="alamat" class="col-sm-4 col-form-label">Alamat Lengkap</label>
-                                    <div class="col-sm-8">
-                                        <input type="text" class="form-control-plaintext" id="alamat" value="{{ Auth::user()->alamat }}">
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label for="kecamatan" class="col-sm-4 col-form-label">Alamat Lengkap</label>
-                                    <div class="col-sm-4">
-                                        <select name="kecamatan" id="kecamatan" class="form-control kecamatan">
-                                            <option value="0">--Pilih Kecamatan--</option>
-                                            <option value="1">Cilacap 1</option>
-                                            <option value="2">Cilacap 2</option>
-                                            <option value="3">Cilacap 3</option>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-                        </div> <!-- card.// -->
-                        <hr>
-                        <div class="card">
-                            <div class="card-body">
-                                <h5 class="card-title">Data Produk</h5>
-                                <table class="table table-hover shopping-cart-wrap">
-                                    <thead class="text-muted">
+                            </div> <!-- card.// -->
+                        </main> <!-- col.// -->
+                        <main class="col-sm-4">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h5 class="card-title">Detail Pembayaran</h5>
+                                    <table class="table-bayar">
                                         <tr>
-                                            <th scope="col">Produk</th>
-                                            <th scope="col" width="120">Quantity</th>
-                                            <th scope="col" width="120">Harga</th>
+                                            <td>Total Harga:</td>
+                                            <td class="nominal">Rp. <span>{{ rupiah($total_harga->sumHarga) }}</span></td>
+                                            <input type="hidden" name="total_harga" class="total_harga" value="{{ $total_harga->sumHarga }}">
                                         </tr>
-                                    </thead>
-                                    <tbody>
-                                        @foreach ($orders as $order)                                            
                                         <tr>
-                                            <td>
-                                                <figure class="media">
-                                                    <div class="img-wrap"><img src="http://warung-mitra-admin.test/img/{{ $order->data_produk->gambar1 }}" class="img-thumbnail img-sm"></div>
-                                                    <figcaption class="media-body">
-                                                        <h6 class="title text-truncate">{{ $order->data_produk->nama }}</h6>
-                                                    </figcaption>
-                                                </figure> 
-                                            </td>
-                                            <td class="text-center">
-                                                {{ $order->qty }}
-                                            </td>
-                                            <td>
-                                                <div class="price-wrap"> 
-                                                    <var class="price">Rp. {{ rupiah($order->data_produk->harga) }}</var> 
-                                                </div> <!-- price-wrap .// -->
-                                            </td>
+                                            <td>Ongkos Kirim:</td>
+                                            <td class="nominal">Rp. <span class="ongkir">{{ rupiah(0) }}</span></td>
+                                            <input type="hidden" name="ongkir" class="ongkir_hidden" value="">
                                         </tr>
-                                        @endforeach
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div> <!-- card.// -->
-                    </main> <!-- col.// -->
-                    <main class="col-sm-4">
-                        <div class="card">
-                            <div class="card-body">
-                                <h5 class="card-title">Detail Pembayaran</h5>
-                                <table class="table-bayar">
-                                    <tr>
-                                        <td>Total Harga:</td>
-                                        <td class="nominal">Rp. <span>{{ rupiah($total_harga->sumHarga) }}</span></td>
-                                        <input type="hidden" class="total_harga" value="{{ $total_harga->sumHarga }}">
-                                    </tr>
-                                    <tr>
-                                        <td>Ongkos Kirim:</td>
-                                        <td class="nominal">Rp. <span class="ongkir">{{ rupiah(0) }}</span></td>
-                                    </tr>
-                                </table>
-                                <hr>
-                                <table class="table-bayar">
-                                    <tr>
-                                        <td><strong> Total Bayar: </strong></td>
-                                        <td class="nominal"><strong> Rp. <span class="total_bayar">{{ rupiah(0) }}</span> </strong></td>
-                                    </tr>
-                                </table>
-                            </div>
-                        </div> <!-- card.// -->
-                        <button type="sumbit" class="btn btn-warning btn-block">Pilih Metode Pembayaran</button>
-                    </main> <!-- col.// -->
-                </div>
-            </div> <!-- container .//  -->
-        </section>
+                                    </table>
+                                    <hr>
+                                    <table class="table-bayar">
+                                        <tr>
+                                            <td><strong> Total Bayar: </strong></td>
+                                            <td class="nominal"><strong> Rp. <span class="total_bayar">{{ rupiah(0) }}</span> </strong></td>
+                                            <input type="hidden" name="total_bayar" class="total_bayar_hidden" value="">
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div> <!-- card.// -->
+                            <button type="sumbit" class="btn btn-warning btn-block">Pilih Metode Pembayaran</button>
+                        </main> <!-- col.// -->
+                    </div>
+                </div> <!-- container .//  -->
+            </section>
+        </form>
         <!-- jQuery -->
         <script src="{{ asset('client/js/jquery-2.0.0.min.js') }}" type="text/javascript"></script>
 
@@ -209,20 +230,24 @@
                     if(kecamatanValue == 1) {
                         var ongkir = 3000;
                         $('.ongkir').append(rupiah(ongkir));
+                        $('.ongkir_hidden').val(ongkir);
                         total_bayar = parseInt(total_harga) + 3000;
                     } else if(kecamatanValue == 2) {
                         var ongkir = 5000;
                         $('.ongkir').append(rupiah(ongkir));
+                        $('.ongkir_hidden').val(ongkir);
                         total_bayar = parseInt(total_harga) + 5000;
                     } else if(kecamatanValue == 3) {
                         var ongkir = 7000;
                         $('.ongkir').append(rupiah(ongkir));
+                        $('.ongkir_hidden').val(ongkir);
                         total_bayar = parseInt(total_harga) + 7000;
                     } else {
                         $('.ongkir').append(0);
                     }
                     
                     $('.total_bayar').append(rupiah(total_bayar));
+                    $('.total_bayar_hidden').val(total_bayar);
                 });
             });
         </script>
