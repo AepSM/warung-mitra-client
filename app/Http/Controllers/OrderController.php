@@ -45,7 +45,7 @@ class OrderController extends Controller
             "total_harga" => $request->total_harga,
             "ongkir" => $request->ongkir,
             "total_bayar" => $request->total_bayar,
-            "status_bayar" => 1
+            "status_bayar" => 0
         ]);
         
         $order_sementara_inserts = OrderSementara::where('kode', Auth::user()->email)->get();
@@ -64,6 +64,6 @@ class OrderController extends Controller
             $order_sementara->delete();
         }
 
-        return redirect()->route('pembayaran');
+        return redirect()->route('pembayaran.index');
     }
 }

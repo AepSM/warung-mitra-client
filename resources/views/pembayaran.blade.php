@@ -24,6 +24,11 @@
             .link-logo, .link-logo:hover {
                 color: black;
             }
+            .card-title {
+                padding: 10px;
+                background-color: #aaaaaa;
+                color: #fff;
+            }
             .table-bayar {
                 width: 100%;
             }
@@ -33,12 +38,8 @@
             .table-bayar .nominal {
                 text-align: right;
             }
-            .text-error {
-                height: 10px;
-                margin-top: -10;
-                margin-bottom: 20px;
-                font-size: 12px;
-                color: red;
+            .tf-aplikasi {
+                max-width: 80px;
             }
         </style>
     </head>
@@ -57,14 +58,14 @@
                         </div>
                         <div class="col-2 pull-right">
                             <div class="d-flex justify-content-end">
-                                <p><strong>DETAIL BELANJA</strong></p>
+                                <p><strong>PEMBAYARAN</strong></p>
                             </div> <!-- widgets-wrap.// -->
                         </div> <!-- col.// -->
                     </div> <!-- row.// -->
                 </div> <!-- container.// -->
             </section> <!-- header-main .// -->
         </header> <!-- section-header.// -->
-        <form action="{{ route('order.store') }}" method="POST">
+        <form action="{{ route('pembayaran.store') }}" method="POST">
             @csrf
             <section class="section-content bg padding-y border-top">
                 <div class="container">        
@@ -72,78 +73,68 @@
                         <main class="col-sm-8">        
                             <div class="card">
                                 <div class="card-body">
-                                    <h5 class="card-title">Detail Pembeli</h5>
-                                    <div class="form-group row">
-                                        <label for="nama" class="col-sm-4 col-form-label">Nama Lengkap</label>
-                                        <div class="col-sm-8">
-                                            <input type="text" class="form-control-plaintext" name="nama" id="nama" value="{{ Auth::user()->nama }}">
+                                    <h5 class="card-title">Pilih Metode Pembayaran</h5>
+                                    <div class="accordion" id="accordionExample">
+                                        <div class="card">
+                                            <div class="card-header" id="headingOne">
+                                                <h2 class="mb-0">
+                                                    <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                                        <label for="aplikasi"><input type="radio" name="metode_pembayaran" id="aplikasi"> Via Aplikasi</label>
+                                                    </button>
+                                                </h2>
+                                            </div>
+                                    
+                                            <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+                                                <div class="card-body">
+                                                    <table>
+                                                        <tr>
+                                                            <td><input type="radio" name="metode_pembayaran" id="warungmitra" value="1"></td>
+                                                            <td><img src="{{ asset('client/images/logos/warung-mitra.jpeg') }}" alt="warung-image" class="tf-aplikasi"></td>
+                                                            <td>Transfer warung mitra atas nama <strong>CV. Mitra pasar sejahtera</strong></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td><input type="radio" name="metode_pembayaran" id="warungmitra" value="2"></td>
+                                                            <td><img src="{{ asset('client/images/logos/koperasi-mitra.jpeg') }}" alt="warung-image" class="tf-aplikasi"></td>
+                                                            <td>Transfer koperasi mitra berkah usaha atas nama <strong>CV. Mitra pasar sejahtera</strong></td>
+                                                        </tr>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="card">
+                                            <div class="card-header" id="headingTwo">
+                                                <h2 class="mb-0">
+                                                    <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                                        <label for="transfer"><input type="radio" name="metode_pembayaran" id="transfer" value="3"> Transfer Bank</label>
+                                                    </button>
+                                                </h2>
+                                            </div>
+                                            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+                                                <div class="card-body">
+                                                    <table>
+                                                        <tr>
+                                                            <td><img src="{{ asset('client/images/logos/logo-bank-bca.png') }}" alt="warung-image" class="tf-aplikasi"></td>
+                                                            <td>Rekening atas nama <strong>CV. Mitra pasar sejahtera</strong></td>
+                                                        </tr>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="card">
+                                            <div class="card-header" id="headingThree">
+                                                <h2 class="mb-0">
+                                                    <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                                        <label for="cod"><input type="radio" name="metode_pembayaran" id="cod" value="4"> Cash On Delivery (COD)</label>
+                                                    </button>
+                                                </h2>
+                                            </div>
+                                            <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+                                                <div class="card-body">
+                                                    Untuk pembelian via <strong>COD</strong> bisa menghubungi kontak yang ada di website www.warungmitra.com
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
-                                    <div class="form-group row">
-                                        <label for="nomor_hp" class="col-sm-4 col-form-label">Nomor HP</label>
-                                        <div class="col-sm-8">
-                                            <input type="text" class="form-control-plaintext" name="nomor_hp" id="nomor_hp" value="{{ Auth::user()->nomor_hp }}">
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label for="alamat" class="col-sm-4 col-form-label">Alamat Lengkap</label>
-                                        <div class="col-sm-8">
-                                            <input type="text" class="form-control-plaintext" name="alamat" id="alamat" value="{{ Auth::user()->alamat }}">
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label for="kecamatan" class="col-sm-4 col-form-label">Kecamatan</label>
-                                        <div class="col-sm-4">
-                                            <select name="kecamatan" name="kecamatan" id="kecamatan" class="form-control kecamatan">
-                                                <option value="">--Pilih Kecamatan--</option>
-                                                <option value="1">Cilacap Utara</option>
-                                                <option value="2">Cilacap Tengah</option>
-                                                <option value="3">Cilacap Selatan</option>
-                                            </select>
-                                        </div>
-                                        <div class="text-error">
-                                            @if ($errors->has('kecamatan'))
-                                                {{ $errors->first('kecamatan') }}
-                                            @endif
-                                        </div>
-                                    </div>
-                                </div>
-                            </div> <!-- card.// -->
-                            <hr>
-                            <div class="card">
-                                <div class="card-body">
-                                    <h5 class="card-title">Data Produk</h5>
-                                    <table class="table table-hover shopping-cart-wrap">
-                                        <thead class="text-muted">
-                                            <tr>
-                                                <th scope="col">Produk</th>
-                                                <th scope="col" width="120">Quantity</th>
-                                                <th scope="col" width="120">Harga</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            @foreach ($orders as $key => $order)
-                                            <tr>
-                                                <td>
-                                                    <figure class="media">
-                                                        <div class="img-wrap"><img src="http://warung-mitra-admin.test/img/{{ $order->data_produk->gambar1 }}" class="img-thumbnail img-sm"></div>
-                                                        <figcaption class="media-body">
-                                                            <h6 class="title text-truncate">{{ $order->data_produk->nama }}</h6>
-                                                        </figcaption>
-                                                    </figure> 
-                                                </td>
-                                                <td class="text-center">
-                                                    {{ $order->qty }}
-                                                </td>
-                                                <td>
-                                                    <div class="price-wrap"> 
-                                                        <var class="price">Rp. {{ rupiah($order->data_produk->harga) }}</var> 
-                                                    </div> <!-- price-wrap .// -->
-                                                </td>
-                                            </tr>
-                                            @endforeach
-                                        </tbody>
-                                    </table>
                                 </div>
                             </div> <!-- card.// -->
                         </main> <!-- col.// -->
@@ -154,26 +145,23 @@
                                     <table class="table-bayar">
                                         <tr>
                                             <td>Total Harga:</td>
-                                            <td class="nominal">Rp. <span>{{ rupiah($total_harga->sumHarga) }}</span></td>
-                                            <input type="hidden" name="total_harga" class="total_harga" value="{{ $total_harga->sumHarga }}">
+                                            <td class="nominal">Rp. <span>{{ rupiah($orders->total_harga) }}</span></td>
                                         </tr>
                                         <tr>
                                             <td>Ongkos Kirim:</td>
-                                            <td class="nominal">Rp. <span class="ongkir">{{ rupiah(0) }}</span></td>
-                                            <input type="hidden" name="ongkir" class="ongkir_hidden" value="">
+                                            <td class="nominal">Rp. <span class="ongkir">{{ rupiah($orders->ongkir) }}</span></td>
                                         </tr>
                                     </table>
                                     <hr>
                                     <table class="table-bayar">
                                         <tr>
                                             <td><strong> Total Bayar: </strong></td>
-                                            <td class="nominal"><strong> Rp. <span class="total_bayar">{{ rupiah(0) }}</span> </strong></td>
-                                            <input type="hidden" name="total_bayar" class="total_bayar_hidden" value="">
+                                            <td class="nominal"><strong> Rp. <span class="total_bayar">{{ rupiah($orders->total_bayar) }}</span> </strong></td>
                                         </tr>
                                     </table>
                                 </div>
                             </div> <!-- card.// -->
-                            <button type="sumbit" class="btn btn-warning btn-block">Pilih Metode Pembayaran</button>
+                            <button type="sumbit" class="btn btn-warning btn-block">BAYAR</button>
                         </main> <!-- col.// -->
                     </div>
                 </div> <!-- container .//  -->
@@ -229,15 +217,15 @@
                         $('.ongkir_hidden').val(ongkir);
                         total_bayar = parseInt(total_harga) + 3000;
                     } else if(kecamatanValue == 2) {
-                        var ongkir = 4000;
-                        $('.ongkir').append(rupiah(ongkir));
-                        $('.ongkir_hidden').val(ongkir);
-                        total_bayar = parseInt(total_harga) + 4000;
-                    } else if(kecamatanValue == 3) {
                         var ongkir = 5000;
                         $('.ongkir').append(rupiah(ongkir));
                         $('.ongkir_hidden').val(ongkir);
                         total_bayar = parseInt(total_harga) + 5000;
+                    } else if(kecamatanValue == 3) {
+                        var ongkir = 7000;
+                        $('.ongkir').append(rupiah(ongkir));
+                        $('.ongkir_hidden').val(ongkir);
+                        total_bayar = parseInt(total_harga) + 7000;
                     } else {
                         $('.ongkir').append(0);
                     }

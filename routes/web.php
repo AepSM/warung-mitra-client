@@ -32,5 +32,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/order_detail', 'OrderController@index')->name('order.index');
     Route::post('/order_detail/store', 'OrderController@store')->name('order.store');
 
-    Route::get('/pembayaran', 'PembayaranController@index')->name('pembayaran.index');    
+    Route::get('/pembayaran', 'PembayaranController@index')->name('pembayaran.index');  
+    Route::post('/pembayaran/store', 'PembayaranController@store')->name('pembayaran.store');      
+    
+    Route::get('/invoice', 'InvoiceController@index')->name('invoice.index');  
 });
