@@ -115,13 +115,22 @@
                         <li class="nav-item"><a class="nav-link" href="/">Beranda</a></li>
                         {{-- <li class="nav-item"><a class="nav-link" href="#">Kontak</a></li> --}}
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="dropdown07" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><strong>All category</strong></a>
+                            <a class="nav-link dropdown-toggle" href="#" id="dropdown07" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Kebutuhan pokok</a>
                             <div class="dropdown-menu" aria-labelledby="dropdown07">
-                                @foreach ($kategoris as $kategori)
-                                    <a class="dropdown-item" href="{{ url('search?attr=' . $kategori->nama) }}">{{ $kategori->nama }}</a>
-                                @endforeach
+                                <a class="dropdown-item" href="{{ url('search?attr=Bahan masak') }}">Bahan masak</a>
+                                <a class="dropdown-item" href="{{ url('search?attr=Kopi') }}">Kopi</a>
+                                <a class="dropdown-item" href="{{ url('search?attr=Makanan') }}">Makanan</a>
+                                <a class="dropdown-item" href="{{ url('search?attr=Mie') }}">Mie</a>
+                                <a class="dropdown-item" href="{{ url('search?attr=Minuman') }}">Minuman</a>
+                                <a class="dropdown-item" href="{{ url('search?attr=Renceng') }}">Renceng</a>
+                                <a class="dropdown-item" href="{{ url('search?attr=Sembako') }}">Sembako</a>
                             </div>
                         </li>
+                        <li class="nav-item"><a class="nav-link" href="{{ url('search?attr=Barang paketan') }}">Barang paketan</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{{ url('search?attr=Kesehatan dan kecantikan') }}">Kesehatan dan kecantikan</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{{ url('search?attr=Perlengkapan rumah tangga') }}">Perlengkapan rumah tangga</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{{ url('search?attr=Kebutuhan bayi') }}">Kebutuhan bayi</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{{ url('search?attr=Promo') }}">Promo</a></li>
                     </ul>
                 </div> <!-- collapse .// -->
             </div> <!-- container .// -->
