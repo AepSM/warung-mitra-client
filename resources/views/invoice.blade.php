@@ -90,9 +90,12 @@
                                 <p class="kode_tagihan">Kode Tagihan:</p>
                                 <p><strong>{{ $order->kode }}</strong></p>
 
-                                @if ($order->jenis_bayar != 4)
-                                    <p class="title_rekening">Pembayaran dapat dilakukan ke rekening a/n CV. Mitra pasar sejahtera berikut:          
-                                    <p><strong>Bank BCA, 1234567890</strong></p>
+                                @if ($order->jenis_bayar == 2)
+                                    <p class="title_rekening">Pembayaran dapat dilakukan ke rekening a.n Warung mitra berikut:          
+                                    <p><strong>Bank -, 11100-00093-0000001</strong></p>
+                                @elseif ($order->jenis_bayar == 3)
+                                    <p class="title_rekening">Pembayaran dapat dilakukan ke rekening a.n Endro prasetyo,se berikut:          
+                                    <p><strong>Bank BCA, 434-0071-439</strong></p>
                                 @else
                                     <span>bertemu langsung dengan penjual</span>
                                 @endif

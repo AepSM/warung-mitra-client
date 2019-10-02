@@ -167,15 +167,14 @@
                         <article class="white">
                             <h5 class="title">Kontak</h5>
                             <p>
-                                <strong>Phone: </strong> +123456789 <br> 
-                                <strong>Phone: </strong> +123456789 <br> 
-                                <strong>WhatsApp: </strong> +123456789 
+                                <strong>Phone / WhatsApp: </strong> 085228348588 <br>
+                                <strong>Phone / WhatsApp: </strong> 088215425668 <br>
                             </p>
 
                             <div class="btn-group white">
                                 <a class="btn btn-facebook" title="Facebook" target="_blank" href="#"><i class="fab fa-facebook-f  fa-fw"></i></a>
                                 <a class="btn btn-instagram" title="Instagram" target="_blank" href="#"><i class="fab fa-instagram  fa-fw"></i></a>
-                                <a class="btn btn-youtube" title="Youtube" target="_blank" href="#"><i class="fab fa-youtube  fa-fw"></i></a>
+                                <a class="btn btn-youtube" title="Youtube" target="_blank" href="https://youtu.be/xcL1po_LHzw"><i class="fab fa-youtube  fa-fw"></i></a>
                                 <a class="btn white bg-green" title="whatsapp" target="_blank" href="#"><i class="fab fa-whatsapp  fa-fw"></i></a>
                             </div>
                         </article>

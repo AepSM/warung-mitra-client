@@ -87,15 +87,15 @@
                                             <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
                                                 <div class="card-body">
                                                     <table>
-                                                        <tr>
-                                                            <td><input type="radio" name="metode_pembayaran" id="warungmitra" value="1"></td>
+                                                        {{-- <tr>
+                                                            <td><input type="radio" name="metode_pembayaran" id="warungmitra" value="1" checked></td>
                                                             <td><img src="{{ asset('client/images/logos/warung-mitra.jpeg') }}" alt="warung-image" class="tf-aplikasi"></td>
                                                             <td>Transfer warung mitra atas nama <strong>CV. Mitra pasar sejahtera</strong></td>
-                                                        </tr>
+                                                        </tr> --}}
                                                         <tr>
-                                                            <td><input type="radio" name="metode_pembayaran" id="warungmitra" value="2"></td>
+                                                            <td><input type="radio" name="metode_pembayaran" id="warungmitra" value="2" checked></td>
                                                             <td><img src="{{ asset('client/images/logos/koperasi-mitra.jpeg') }}" alt="warung-image" class="tf-aplikasi"></td>
-                                                            <td>Transfer koperasi mitra berkah usaha atas nama <strong>CV. Mitra pasar sejahtera</strong></td>
+                                                            <td>Transfer Aplikasi koperasi mitra berkah usaha atas nama <strong>Warung mitra</strong></td>
                                                         </tr>
                                                     </table>
                                                 </div>
@@ -114,7 +114,7 @@
                                                     <table>
                                                         <tr>
                                                             <td><img src="{{ asset('client/images/logos/logo-bank-bca.png') }}" alt="warung-image" class="tf-aplikasi"></td>
-                                                            <td>Rekening atas nama <strong>CV. Mitra pasar sejahtera</strong></td>
+                                                            <td>Rekening atas nama <strong>Endro prasetyo,se</strong></td>
                                                         </tr>
                                                     </table>
                                                 </div>
@@ -134,6 +134,16 @@
                                                 </div>
                                             </div>
                                         </div>
+                                    </div>
+                                </div>
+                                <div class="card-body">
+                                    <h5 class="card-title">Jadwal Pengiriman</h5>
+                                    <div>
+                                        <ul>
+                                            <li>Pagi pukul 10:00 s/d 12:00 (batas maksimal transfer pukul 09:00)</li>
+                                            <li>Sore pukul 15:00 s/d 17:00 (transfer diatas pukul 09:00 s/d 14:00)</li>
+                                            <li>Transfer diatas pukul 15:00 diantar besoknya pukul 10:00</li>
+                                        </ul>
                                     </div>
                                 </div>
                             </div> <!-- card.// -->
