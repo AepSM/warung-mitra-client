@@ -28,6 +28,9 @@
     <link href="{{ asset('client/css/ui.css') }}" rel="stylesheet" type="text/css"/>
     <link href="{{ asset('client/css/responsive.css') }}" rel="stylesheet" media="only screen and (max-width: 1200px)" />
 
+    <!-- chat whatsapp -->
+    <link href="{{ asset('css/floating-wpp.css') }}" rel="stylesheet" type="text/css"/>
+
     @yield('style')
 
     <style>
@@ -175,7 +178,7 @@
                                 <a class="btn btn-facebook" title="Facebook" target="_blank" href="#"><i class="fab fa-facebook-f  fa-fw"></i></a>
                                 <a class="btn btn-instagram" title="Instagram" target="_blank" href="#"><i class="fab fa-instagram  fa-fw"></i></a>
                                 <a class="btn btn-youtube" title="Youtube" target="_blank" href="https://youtu.be/xcL1po_LHzw"><i class="fab fa-youtube  fa-fw"></i></a>
-                                <a class="btn white bg-green" title="whatsapp" target="_blank" href="#"><i class="fab fa-whatsapp  fa-fw"></i></a>
+                                <a class="btn white bg-green" title="whatsapp" target="_blank" href="https://wa.me/+6281337667055"><i class="fab fa-whatsapp  fa-fw"></i></a>
                             </div>
                         </article>
                     </aside>
@@ -190,6 +193,7 @@
                 </div>
             </section> <!-- //footer-top -->
         </div><!-- //container -->
+        <div id="btnWhatsapp"></div>
     </footer>
     <!-- ========================= FOOTER END // ========================= -->
 
@@ -202,19 +206,24 @@
     <script src="{{ asset('client/plugins/slickslider/slick.min.js') }}"></script>
     <!-- custom javascript -->
 
-    <!--Start of Tawk.to Script-->
+    <script src="{{ asset('js/floating-wpp.js') }}"></script>
+
     <script type="text/javascript">
-        var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
-        (function(){
-            var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
-            s1.async=true;
-            s1.src='https://embed.tawk.to/5d646faa77aa790be330de31/default';
-            s1.charset='UTF-8';
-            s1.setAttribute('crossorigin','*');
-            s0.parentNode.insertBefore(s1,s0);
-        })();
+        $(function () {
+            $('#btnWhatsapp').floatingWhatsApp({
+                phone: '+6281337667055',
+                popupMessage: 'Ada yang bisa kami bantu?',
+                message: "",
+                showPopup: true,
+                showOnIE: false,
+                headerTitle: 'Welcome!',
+                headerColor: 'crimson',
+                backgroundColor: 'crimson',
+                buttonImage: '<img src="whatsapp.svg" />',
+                position: "right"
+            });
+        });
     </script>
-    <!--End of Tawk.to Script-->
 
     @yield('script')
 </body>
