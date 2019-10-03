@@ -29,11 +29,13 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('/tambah_data_keranjang', 'KeranjangController@tambah_data')->name('keranjang.tambah_data');
     Route::get('/hapus_keranjang/{id}', 'KeranjangController@hapus')->name('keranjang.hapus');
 
-    Route::get('/order_detail', 'OrderController@index')->name('order.index');
-    Route::post('/order_detail/store', 'OrderController@store')->name('order.store');
-
-    Route::get('/pembayaran', 'PembayaranController@index')->name('pembayaran.index');  
-    Route::post('/pembayaran/store', 'PembayaranController@store')->name('pembayaran.store');      
+    Route::group(['middleware' => 'prevent-back-history'],function(){
+        Route::get('/order_detail', 'OrderController@index')->name('order.index');
+        Route::post('/order_detail/store', 'OrderController@store')->name('order.store');
     
-    Route::get('/invoice', 'InvoiceController@index')->name('invoice.index');  
+        Route::get('/pembayaran', 'PembayaranController@index')->name('pembayaran.index');  
+        Route::post('/pembayaran/store', 'PembayaranController@store')->name('pembayaran.store');      
+        
+        Route::get('/invoice', 'InvoiceController@index')->name('invoice.index');  
+    });    
 });

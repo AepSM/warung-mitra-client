@@ -21,10 +21,14 @@ class OrderController extends Controller
         ->where('kode', $email)
         ->first();
 
-        return view('detail_belanja', [
-            'orders' => $orders,
-            'total_harga' => $total_harga
-        ]);
+        if ($orders->isEmpty()) {
+            return redirect()->route('home');
+        } else {
+            return view('detail_belanja', [
+                'orders' => $orders,
+                'total_harga' => $total_harga
+            ]);
+        }
     }
 
     public function store(Request $request)
