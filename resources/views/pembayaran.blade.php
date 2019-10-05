@@ -161,12 +161,18 @@
                                             <td>Ongkos Kirim:</td>
                                             <td class="nominal">Rp. <span class="ongkir">{{ rupiah($orders->ongkir) }}</span></td>
                                         </tr>
+                                        <tr>
+                                            <td><label for="poin"><input type="checkbox" name="poin" class="poin" id="poin" value="{{ $orders->data_customer->poin }}"> Poin: </label></td>
+                                            <td class="nominal"><span class="val_poin">{{ rupiah($orders->data_customer->poin) }}</span></td>
+                                            <input type="hidden" id="hidden_poin" value="{{ $orders->data_customer->poin }}">
+                                        </tr>
                                     </table>
                                     <hr>
                                     <table class="table-bayar">
                                         <tr>
                                             <td><strong> Total Bayar: </strong></td>
                                             <td class="nominal"><strong> Rp. <span class="total_bayar">{{ rupiah($orders->total_bayar) }}</span> </strong></td>
+                                            <input type="hidden" name="total_bayar" id="hidden_total_bayar" value="{{ $orders->total_bayar }}">
                                         </tr>
                                     </table>
                                 </div>
@@ -183,20 +189,6 @@
         <!-- Bootstrap4 files-->
         <script src="{{ asset('client/js/bootstrap.bundle.min.js') }}" type="text/javascript"></script>
         <!-- custom javascript -->
-
-        <!--Start of Tawk.to Script-->
-        <script type="text/javascript">
-            var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
-            (function(){
-                var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
-                s1.async=true;
-                s1.src='https://embed.tawk.to/5d646faa77aa790be330de31/default';
-                s1.charset='UTF-8';
-                s1.setAttribute('crossorigin','*');
-                s0.parentNode.insertBefore(s1,s0);
-            })();
-        </script>
-        <!--End of Tawk.to Script-->
 
         <script>
             $('document').ready(function() {
@@ -215,33 +207,21 @@
 
                     return rupiah;
                 }
-                $('.kecamatan').on('change', function() {
-                    $('.ongkir').empty();
-                    $('.total_bayar').empty();
-                    var kecamatanValue = $(this).val();
-                    var total_harga = $('.total_harga').val();
+                $('.poin').on('change', function() {
+                    var poin = $('#hidden_poin').val();
+                    var total_bayar = $('#hidden_total_bayar').val();
 
-                    if(kecamatanValue == 1) {
-                        var ongkir = 3000;
-                        $('.ongkir').append(rupiah(ongkir));
-                        $('.ongkir_hidden').val(ongkir);
-                        total_bayar = parseInt(total_harga) + 3000;
-                    } else if(kecamatanValue == 2) {
-                        var ongkir = 5000;
-                        $('.ongkir').append(rupiah(ongkir));
-                        $('.ongkir_hidden').val(ongkir);
-                        total_bayar = parseInt(total_harga) + 5000;
-                    } else if(kecamatanValue == 3) {
-                        var ongkir = 7000;
-                        $('.ongkir').append(rupiah(ongkir));
-                        $('.ongkir_hidden').val(ongkir);
-                        total_bayar = parseInt(total_harga) + 7000;
+                    if(this.checked) {
+                        var hitung = parseInt(total_bayar) - parseInt(poin);
+                        $('#hidden_total_bayar').val("");
+                        $('#hidden_total_bayar').val(hitung);
+                        $('.total_bayar').text(rupiah(hitung));
                     } else {
-                        $('.ongkir').append(0);
+                        var hitung = parseInt(total_bayar) + parseInt(poin);
+                        $('#hidden_total_bayar').val("");
+                        $('#hidden_total_bayar').val(hitung);
+                        $('.total_bayar').text(rupiah(hitung));
                     }
-                    
-                    $('.total_bayar').append(rupiah(total_bayar));
-                    $('.total_bayar_hidden').val(total_bayar);
                 });
             });
         </script>

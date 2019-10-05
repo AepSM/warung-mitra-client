@@ -37,7 +37,16 @@ class TransaksiController extends Controller
 
     public function detail($kode)
     {
-        $orders = Order::where('kode', $kode)->first();
-        return view('transaksi_detail', ['orders' => $orders]);
+        $orders = Order::where('kode', $kode)
+        ->where('jenis_bayar', null)
+        ->first();
+        if($orders) {
+            $orders = Order::where('kode', $kode)->first();
+            return view('transaksi_detail', ['orders' => $orders]);
+        }
+        else {
+            return redirect()->route('home');
+        }
+        
     }
 }
