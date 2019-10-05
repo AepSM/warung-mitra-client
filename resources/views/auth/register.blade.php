@@ -170,7 +170,7 @@
                                 <div class="input-group-append">
                                     <span class="input-group-text"><i class="fas fa-user"></i></span>
                                 </div>
-                                <input type="text" name="username" class="form-control input_user{{ $errors->has('username') ? ' border-error' : '' }}" value="{{ old('username') }}" placeholder="username">
+                                <input type="text" name="username" class="form-control input_user{{ $errors->has('username') ? ' border-error' : '' }}" value="{{ old('username') }}" placeholder="username" maxlength="8">
                             </div>
                             <div class="text-error">
                                 @if ($errors->has('username'))

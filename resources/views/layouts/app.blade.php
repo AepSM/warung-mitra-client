@@ -47,7 +47,7 @@
         <section class="header-main">
             <div class="container">
                 <div class="row align-items-center">
-                    <div class="col-lg-5-24 col-sm-5 col-4">
+                    <div class="col-lg-3 col-sm-4">
                         <div class="brand-wrap">
                             <a href="{{ url('/') }}" class="link-logo">
                                 <img class="logo" src="{{ asset('client/images/logos/logo-wm.png') }}">
@@ -55,7 +55,7 @@
                             </a>
                         </div> <!-- brand-wrap.// -->
                     </div>
-                    <div class="col-lg-13-24 col-sm-12 order-3 order-lg-2">
+                    <div class="col-lg-4 col-xl-5 col-sm-8">
                         <form action="{{ route('search') }}" method="GET">
                             <div class="input-group w-100">
                                 <input type="text" class="form-control" name="attr" style="width:60%;" placeholder="Search">                        
@@ -67,17 +67,37 @@
                             </div>
                         </form> <!-- search-wrap .end// -->
                     </div> <!-- col.// -->
-                    <div class="col-lg-6-24 col-sm-7 col-8  order-2  order-lg-3">
-                        <div class="d-flex justify-content-end">
-                            <div class="widget-header">
-                                @guest
-                                    <small class="title text-muted">Selamat Datang</small>
+                    <div class="col-lg-5 col-xl-4 col-sm-12">
+                        <div class="widgets-wrap float-right">
+                            @guest
+                                <div class="widget-header">
+                                    <small class="title text-muted">WELCOME</small>
                                     <div>
                                         <a href="{{ route('login') }}">Login</a> <span class="dark-transp"> | </span>
                                         <a href="{{ route('register') }}"> Register</a>
                                     </div>
-                                @else
-                                    <small class="title text-muted">{{ Auth::user()->nama }}</small>
+                                </div>
+                            @else
+                                <div class="widget-header mr-3">
+                                    <a href="{{ route('transaksi.index') }}"><small class="title text-muted">TRANSAKSI</small></a>
+                                    <div class="text-center">
+                                        <a href="{{ route('transaksi.index') }}">
+                                            @if ($transaksi == 0)
+                                                <span>0</span>
+                                            @else
+                                                <span class="badge badge-pill badge-danger notif-cart">{{ $transaksi }}</span>                                                
+                                            @endif
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="widget-header mr-3">
+                                    <small class="title text-muted">POIN</small>
+                                    <div>
+                                        {{ rupiah(Auth::user()->poin) }}
+                                    </div>
+                                </div>
+                                <div class="widget-header">                                
+                                    <small class="title text-muted">{{ strtoupper(Auth::user()->username) }}</small>
                                     <div>
                                         <a class="dropdown-toggle" href="#" id="dropdown07" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Setting</a>
                                         
@@ -94,15 +114,14 @@
                                             @csrf
                                         </form>
                                     </div>
-                                @endauth
-                                
-                            </div>
-                            <a href="{{ route('keranjang.index') }}" class="widget-header border-left pl-3 ml-3 shopping-cart">
-                                <div class="icontext">
-                                    <div class="icon-wrap icon-sm round border"><i class="fa fa-shopping-cart"></i></div>
                                 </div>
-                                <span class="badge badge-pill badge-danger notify notif-cart" id="notifcart">{{ $order_sementara == 0 ? '' : $order_sementara }}</span>
-                            </a>
+                                <a href="{{ route('keranjang.index') }}" class="widget-header border-left pl-3 ml-3 shopping-cart">
+                                    <div class="icontext">
+                                        <div class="icon-wrap icon-sm round border"><i class="fa fa-shopping-cart"></i></div>
+                                    </div>
+                                    <span class="badge badge-pill badge-danger notify notif-cart" id="notifcart">{{ $order_sementara == 0 ? '' : $order_sementara }}</span>
+                                </a>
+                            @endauth
                         </div> <!-- widgets-wrap.// -->
                     </div> <!-- col.// -->
                 </div> <!-- row.// -->
@@ -219,7 +238,7 @@
                 headerTitle: 'Welcome!',
                 headerColor: 'crimson',
                 backgroundColor: 'crimson',
-                buttonImage: '<img src="whatsapp.svg" />',
+                buttonImage: '<img src="http://warung-mitra-client.test/whatsapp.svg" />',
                 position: "right"
             });
         });

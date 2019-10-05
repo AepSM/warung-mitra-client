@@ -17,4 +17,9 @@ class OrderDetail extends Model
     {
         return $this->belongsTo('App\Order', 'kode', 'kode');
     }
+
+    public function data_produk()
+    {
+        return $this->belongsTo('App\Produk', 'produk_id', 'id');
+    }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Order;
 use App\Produk;
 use App\Kategori;
 use App\OrderSementara;
@@ -17,6 +18,10 @@ class KeranjangController extends Controller
             $email = Auth::user()->email;
             $order_sementaras = OrderSementara::where('kode', $email)->get();
             $countOrder = count($order_sementaras);
+
+            $id = Auth::user()->id;
+            $orders = Order::where('customer_id', $id)->where('status_bayar', 0)->get();
+            $countOrders = count($orders);
         } else {
             $countOrder = 0;
         }
@@ -24,6 +29,7 @@ class KeranjangController extends Controller
         $kategoris = Kategori::get();
 
         return view('keranjang', [
+                'transaksi' => $countOrders,
                 'order_sementara' => $countOrder,
                 'kategoris' => $kategoris
             ]);

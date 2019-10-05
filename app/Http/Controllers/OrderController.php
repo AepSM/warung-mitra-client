@@ -68,6 +68,6 @@ class OrderController extends Controller
             $order_sementara->delete();
         }
 
-        return redirect()->route('pembayaran.index');
+        return redirect()->route('pembayaran.index', ['kode' => $kode]);
     }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Order;
 use App\Produk;
 use App\Slider;
 use App\Kategori;
@@ -29,9 +30,14 @@ class HomeController extends Controller
         if (Auth::user()) {
             $email = Auth::user()->email;
             $orderSementaras = OrderSementara::where('kode', $email)->get();
-            $countOrder = count($orderSementaras);
+            $countOrderSementara = count($orderSementaras);
+
+            $customer_id = Auth::user()->id;
+            $orders = Order::where('customer_id', $customer_id)->where('status_bayar', 0)->get();
+            $countOrders = count($orders);
         } else {
-            $countOrder = 0;
+            $countOrderSementara = 0;
+            $countOrders = 0;
         }
 
         $kategoris = Kategori::get();
@@ -40,7 +46,8 @@ class HomeController extends Controller
         $produks = Produk::orderBy('id', 'desc')->paginate(30);
 
         return view('home', [
-                'order_sementara' => $countOrder,
+                'transaksi' => $countOrders,
+                'order_sementara' => $countOrderSementara,
                 'kategoris' => $kategoris, 
                 'produks' => $produks, 
                 'sliders' => $sliders, 
@@ -53,9 +60,14 @@ class HomeController extends Controller
         if (Auth::user()) {
             $email = Auth::user()->email;
             $orderSementaras = OrderSementara::where('kode', $email)->get();
-            $countOrder = count($orderSementaras);
+            $countOrderSementara = count($orderSementaras);
+
+            $customer_id = Auth::user()->id;
+            $orders = Order::where('customer_id', $customer_id)->where('status_bayar', 0)->get();
+            $countOrders = count($orders);
         } else {
-            $countOrder = 0;
+            $countOrderSementara = 0;
+            $countOrders = 0;
         }        
 
         $data = $request->attr;
@@ -68,7 +80,8 @@ class HomeController extends Controller
         ->paginate(30);
 
         return view('search', [
-                'order_sementara' => $countOrder,
+                'transaksi' => $countOrders,
+                'order_sementara' => $countOrderSementara,
                 'kategoris' => $kategoris, 
                 'produks' => $produks
             ]);
@@ -79,16 +92,22 @@ class HomeController extends Controller
         if (Auth::user()) {
             $email = Auth::user()->email;
             $orderSementaras = OrderSementara::where('kode', $email)->get();
-            $countOrder = count($orderSementaras);
+            $countOrderSementara = count($orderSementaras);
+
+            $customer_id = Auth::user()->id;
+            $orders = Order::where('customer_id', $customer_id)->where('status_bayar', 0)->get();
+            $countOrders = count($orders);
         } else {
-            $countOrder = 0;
+            $countOrderSementara = 0;
+            $countOrders = 0;
         }
 
         $kategoris = Kategori::get();
         $produk = Produk::find($id);
 
         return view('detail_produk', [
-                'order_sementara' => $countOrder,
+                'transaksi' => $countOrders,
+                'order_sementara' => $countOrderSementara,
                 'kategoris' => $kategoris, 
                 'produk' => $produk
             ]);
