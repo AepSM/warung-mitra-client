@@ -87,11 +87,6 @@
                                             <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
                                                 <div class="card-body">
                                                     <table>
-                                                        {{-- <tr>
-                                                            <td><input type="radio" name="metode_pembayaran" id="warungmitra" value="1" checked></td>
-                                                            <td><img src="{{ asset('client/images/logos/warung-mitra.jpeg') }}" alt="warung-image" class="tf-aplikasi"></td>
-                                                            <td>Transfer warung mitra atas nama <strong>CV. Mitra pasar sejahtera</strong></td>
-                                                        </tr> --}}
                                                         <tr>
                                                             <td><input type="radio" name="metode_pembayaran" id="warungmitra" value="2" checked></td>
                                                             <td><img src="{{ asset('client/images/logos/koperasi-mitra.jpeg') }}" alt="warung-image" class="tf-aplikasi"></td>
