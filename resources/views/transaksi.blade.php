@@ -22,7 +22,7 @@
                                         </nav> <!-- col.// -->
                                         @if ($order->status_bayar == 1)
                                             <div class="col-md-3-24 text-right"> 
-                                                <a href="#" class="btn btn-warning">DETAIL</a>
+                                                
                                             </div> <!-- col.// -->
                                             <div class="col-md-3-24"> <strong><button class="btn btn-default btn-sm">LUNAS</button></strong> </div>
                                         @elseif($order->status_bayar == 0 && $order->jenis_bayar == null)
@@ -32,7 +32,7 @@
                                             <div class="col-md-3-24"> <button class="btn btn-default btn-sm">PILIH METODE PEMBAYARAN</button> </div>
                                         @elseif($order->status_bayar == 0 && $order->jenis_bayar != null)
                                             <div class="col-md-3-24 text-right"> 
-                                                <a href="#" class="btn btn-warning">DETAIL</a>
+                                                <a href="{{ route('invoice.index', ['kode' => $order->kode]) }}" class="btn btn-warning">DETAIL</a>
                                             </div> <!-- col.// -->
                                             <div class="col-md-3-24"> <button class="btn btn-default btn-sm">LANJUT PEMBAYARAN</button> </div>
                                         @else

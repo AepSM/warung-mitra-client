@@ -79,7 +79,7 @@
                                             <div class="card-header" id="headingOne">
                                                 <h2 class="mb-0">
                                                     <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                                        <label for="aplikasi"><input type="radio" name="metode_pembayaran" id="aplikasi"> Via Aplikasi</label>
+                                                        <label for="aplikasi"><input type="radio" name="metode_pembayaran" id="warungmitra" value="2" checked> Via Aplikasi</label>
                                                     </button>
                                                 </h2>
                                             </div>
@@ -87,13 +87,7 @@
                                             <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
                                                 <div class="card-body">
                                                     <table>
-                                                        {{-- <tr>
-                                                            <td><input type="radio" name="metode_pembayaran" id="warungmitra" value="1" checked></td>
-                                                            <td><img src="{{ asset('client/images/logos/warung-mitra.jpeg') }}" alt="warung-image" class="tf-aplikasi"></td>
-                                                            <td>Transfer warung mitra atas nama <strong>CV. Mitra pasar sejahtera</strong></td>
-                                                        </tr> --}}
                                                         <tr>
-                                                            <td><input type="radio" name="metode_pembayaran" id="warungmitra" value="2" checked></td>
                                                             <td><img src="{{ asset('client/images/logos/koperasi-mitra.jpeg') }}" alt="warung-image" class="tf-aplikasi"></td>
                                                             <td>Transfer Aplikasi koperasi mitra berkah usaha atas nama <strong>Warung mitra</strong></td>
                                                         </tr>
@@ -183,20 +177,6 @@
         <!-- Bootstrap4 files-->
         <script src="{{ asset('client/js/bootstrap.bundle.min.js') }}" type="text/javascript"></script>
         <!-- custom javascript -->
-
-        <!--Start of Tawk.to Script-->
-        <script type="text/javascript">
-            var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
-            (function(){
-                var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
-                s1.async=true;
-                s1.src='https://embed.tawk.to/5d646faa77aa790be330de31/default';
-                s1.charset='UTF-8';
-                s1.setAttribute('crossorigin','*');
-                s0.parentNode.insertBefore(s1,s0);
-            })();
-        </script>
-        <!--End of Tawk.to Script-->
 
         <script>
             $('document').ready(function() {

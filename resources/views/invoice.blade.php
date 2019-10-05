@@ -65,7 +65,7 @@
         <section class="section-content bg padding-y-sm">
             <div class="container">
                 <div class="row-sm">
-                    <div class="col-8 mx-auto">
+                    <div class="col-12 mx-auto">
                         <div class="card">
                             <div class="card-header">
                                 <strong>Pembayaran via
@@ -88,14 +88,23 @@
                                 <p><strong class="total_bayar">Rp. {{ rupiah($order->total_bayar) }}</strong></p>
 
                                 <p class="kode_tagihan">Kode Tagihan:</p>
-                                <p><strong>{{ $order->kode }}</strong></p>
+                                <p>
+                                    <input type="text" style="border: none; font-weight: bold;" value="{{ $order->kode }}" id="kodeTagihan" readonly/>
+                                    <button type="button" style="border: none; background: none; color: grey;" id="copyKodeTagihan" data-toggle="tooltip" data-placement="top" title="Tooltip on top">Salin</button>
+                                </p>
 
                                 @if ($order->jenis_bayar == 2)
-                                    <p class="title_rekening">Pembayaran dapat dilakukan ke rekening a.n Warung mitra berikut:          
-                                    <p><strong>Bank -, 11100-00093-0000001</strong></p>
+                                    <p class="title_rekening">Pembayaran dapat dilakukan ke rekening a.n Warung mitra berikut: </p>        
+                                    <p>
+                                        <input type="text" style="border: none; font-weight: bold;" value="11100-00093-0000001" id="no_rek" readonly/>
+                                        <button type="button" style="border: none; background: none; color: grey;" id="copy" data-toggle="tooltip" data-placement="top" title="Tooltip on top">Salin</button>
+                                    </p>
                                 @elseif ($order->jenis_bayar == 3)
-                                    <p class="title_rekening">Pembayaran dapat dilakukan ke rekening a.n Endro prasetyo,se berikut:          
-                                    <p><strong>Bank BCA, 434-0071-439</strong></p>
+                                    <p class="title_rekening">Pembayaran dapat dilakukan ke rekening a.n Endro prasetyo,se berikut:  </p>        
+                                    <p>
+                                        <strong>Bank BCA, </strong><input type="text" style="border: none; font-weight: bold;" value="434-0071-439" id="no_rek" readonly/>
+                                        <button type="button" style="border: none; background: none; color: grey;" id="copy" data-toggle="tooltip" data-placement="top" title="Tooltip on top">Salin</button>
+                                    </p>
                                 @else
                                     <span>bertemu langsung dengan penjual</span>
                                 @endif
@@ -124,6 +133,18 @@
             $('document').ready(function() {
                 $('.btn-cetak').on('click', function() {
                     window.print();
+                })
+                $('#copy').on('click', function(){
+                    $('#no_rek').select();
+                    document.execCommand("copy");
+                    $('#copy').text('Tersalin');
+                    $('#copyKodeTagihan').text('Salin');
+                })
+                $('#copyKodeTagihan').on('click', function(){
+                    $('#kodeTagihan').select();
+                    document.execCommand("copy");
+                    $('#copyKodeTagihan').text('Tersalin');
+                    $('#copy').text('Salin');
                 })
             });
         </script>
