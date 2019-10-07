@@ -92,19 +92,40 @@
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label for="kecamatan" class="col-sm-4 col-form-label">Kecamatan</label>
+                                        <label for="kecamatan" class="col-sm-4 col-form-label"><span class="label-kecamatan"> Kecamatan </span></label>
                                         <div class="col-sm-4">
                                             <select name="kecamatan" name="kecamatan" id="kecamatan" class="form-control kecamatan">
                                                 <option value="">--Pilih Kecamatan--</option>
                                                 <option value="1">Cilacap Utara</option>
                                                 <option value="2">Cilacap Tengah</option>
                                                 <option value="3">Cilacap Selatan</option>
+                                                <option value="4">Lainnya...</option>
                                             </select>
                                         </div>
                                         <div class="text-error">
                                             @if ($errors->has('kecamatan'))
                                                 {{ $errors->first('kecamatan') }}
                                             @endif
+                                        </div>
+                                    </div>
+                                    <div class="form-kabupaten-kodepos">
+                                        <div class="form-group row">
+                                            <label for="kecamatan" class="col-sm-4 col-form-label">Kecamatan</label>
+                                            <div class="col-sm-4">
+                                                <input type="text" class="form-control" name="kecamatan" id="kecamatan" value="">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label for="kabupaten" class="col-sm-4 col-form-label">Kabupaten</label>
+                                            <div class="col-sm-4">
+                                                <input type="text" class="form-control" name="kabupaten" id="kabupaten" value="">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label for="kode_pos" class="col-sm-4 col-form-label">Kode Pos</label>
+                                            <div class="col-sm-4">
+                                                <input type="text" class="form-control" name="kode_pos" id="kode_pos" value="">
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -214,16 +235,27 @@
                         $('.ongkir').append(rupiah(ongkir));
                         $('.ongkir_hidden').val(ongkir);
                         total_bayar = parseInt(total_harga) + 3000;
+                        $('.form-kabupaten-kodepos').hide();
+                        $('.label-kecamatan').show();
                     } else if(kecamatanValue == 2) {
                         var ongkir = 4000;
                         $('.ongkir').append(rupiah(ongkir));
                         $('.ongkir_hidden').val(ongkir);
                         total_bayar = parseInt(total_harga) + 4000;
+                        $('.form-kabupaten-kodepos').hide();
+                        $('.label-kecamatan').show();
                     } else if(kecamatanValue == 3) {
                         var ongkir = 5000;
                         $('.ongkir').append(rupiah(ongkir));
                         $('.ongkir_hidden').val(ongkir);
                         total_bayar = parseInt(total_harga) + 5000;
+                        $('.form-kabupaten-kodepos').hide();
+                        $('.label-kecamatan').show();
+                    } else if(kecamatanValue == 4) {
+                        $('.label-kecamatan').hide();
+                        $('.form-kabupaten-kodepos').show();
+                        $('.ongkir').append(0);
+                        total_bayar = parseInt(total_harga);
                     } else {
                         $('.ongkir').append(0);
                     }
@@ -231,6 +263,7 @@
                     $('.total_bayar').append(rupiah(total_bayar));
                     $('.total_bayar_hidden').val(total_bayar);
                 });
+                $('.form-kabupaten-kodepos').hide();
             });
         </script>
     </body>

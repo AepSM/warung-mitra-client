@@ -37,6 +37,23 @@ class OrderController extends Controller
             "kecamatan" => "required"
         ])->validate();
 
+        if ($request->kabupaten) {
+            \Validator::make($request->all(), [
+                "kabupaten" => "required",
+                "kode_pos" => "required"
+            ])->validate();
+        }
+
+        if ($request->kecamatan == 1) {
+            $kecamatan = "Cilacap Utara";
+        } elseif ($request->kecamatan == 2) {
+            $kecamatan = "Cilacap Tengah";
+        } elseif ($request->kecamatan == 3) {
+            $kecamatan = "Cilacap Selatan";
+        } else {
+            $kecamatan = $request->kecamatan;
+        }
+
         $kode = str_random(6);
 
         $order = Order::create([
@@ -45,7 +62,9 @@ class OrderController extends Controller
             "tanggal" => Carbon::now(),
             "nama" => $request->nama,
             "alamat" => $request->alamat,
-            "kecamatan" => $request->kecamatan,
+            "kecamatan" => $kecamatan,
+            "kabupaten" => $request->kabupaten,
+            "kode_pos" => $request->kode_pos,
             "total_harga" => $request->total_harga,
             "ongkir" => $request->ongkir,
             "total_bayar" => $request->total_bayar,
