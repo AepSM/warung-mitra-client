@@ -75,20 +75,20 @@
                                     <h5 class="card-title">Detail Pembeli</h5>
                                     <div class="form-group row">
                                         <label for="nama" class="col-sm-4 col-form-label">Nama Lengkap</label>
-                                        <div class="col-sm-8">
-                                            <input type="text" class="form-control-plaintext" name="nama" id="nama" value="{{ Auth::user()->nama }}">
+                                        <div class="col-sm-4">
+                                            <input type="text" class="form-control" name="nama" id="nama" value="{{ Auth::user()->nama }}">
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label for="nomor_hp" class="col-sm-4 col-form-label">Nomor HP</label>
-                                        <div class="col-sm-8">
-                                            <input type="text" class="form-control-plaintext" name="nomor_hp" id="nomor_hp" value="{{ Auth::user()->nomor_hp }}">
+                                        <div class="col-sm-4">
+                                            <input type="text" class="form-control" name="nomor_hp" id="nomor_hp" value="{{ Auth::user()->nomor_hp }}">
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label for="alamat" class="col-sm-4 col-form-label">Alamat Lengkap</label>
-                                        <div class="col-sm-8">
-                                            <input type="text" class="form-control-plaintext" name="alamat" id="alamat" value="{{ Auth::user()->alamat }}">
+                                        <div class="col-sm-4">
+                                            <input type="text" class="form-control" name="alamat" id="alamat" value="{{ Auth::user()->alamat }}">
                                         </div>
                                     </div>
                                     <div class="form-group row">
