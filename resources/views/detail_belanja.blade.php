@@ -94,7 +94,7 @@
                                     <div class="form-group row">
                                         <label for="kecamatan" class="col-sm-4 col-form-label"><span class="label-kecamatan"> Kecamatan </span></label>
                                         <div class="col-sm-4">
-                                            <select name="kecamatan" name="kecamatan" id="kecamatan" class="form-control kecamatan">
+                                            <select name="kecamatan" id="kecamatan" class="form-control kecamatan">
                                                 <option value="">--Pilih Kecamatan--</option>
                                                 <option value="1">Cilacap Utara</option>
                                                 <option value="2">Cilacap Tengah</option>
@@ -106,13 +106,25 @@
                                             @if ($errors->has('kecamatan'))
                                                 {{ $errors->first('kecamatan') }}
                                             @endif
+
+                                            @if ($errors->has('kecamatan2'))
+                                                {{ $errors->first('kecamatan2') }}
+                                            @endif
+
+                                            @if ($errors->has('kabupaten'))
+                                                {{ $errors->first('kabupaten') }}
+                                            @endif
+
+                                            @if ($errors->has('kode_pos'))
+                                                {{ $errors->first('kode_pos') }}
+                                            @endif
                                         </div>
                                     </div>
                                     <div class="form-kabupaten-kodepos">
                                         <div class="form-group row">
                                             <label for="kecamatan" class="col-sm-4 col-form-label">Kecamatan</label>
                                             <div class="col-sm-4">
-                                                <input type="text" class="form-control" name="kecamatan" id="kecamatan" value="">
+                                                <input type="text" class="form-control" name="kecamatan2" id="kecamatan" value="">
                                             </div>
                                         </div>
                                         <div class="form-group row">

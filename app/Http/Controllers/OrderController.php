@@ -33,25 +33,26 @@ class OrderController extends Controller
 
     public function store(Request $request)
     {
-        \Validator::make($request->all(), [
-            "kecamatan" => "required"
-        ])->validate();
-
-        if ($request->kabupaten) {
+        if ($request->kecamatan == 4) {
             \Validator::make($request->all(), [
+                "kecamatan2" => "required",
                 "kabupaten" => "required",
                 "kode_pos" => "required"
             ])->validate();
+        } else {
+            \Validator::make($request->all(), [
+                "kecamatan" => "required"
+            ])->validate();
         }
 
-        if ($request->kecamatan == 1) {
+        if ($request->kecamatan1 == 1) {
             $kecamatan = "Cilacap Utara";
-        } elseif ($request->kecamatan == 2) {
+        } elseif ($request->kecamatan1 == 2) {
             $kecamatan = "Cilacap Tengah";
-        } elseif ($request->kecamatan == 3) {
+        } elseif ($request->kecamatan1 == 3) {
             $kecamatan = "Cilacap Selatan";
         } else {
-            $kecamatan = $request->kecamatan;
+            $kecamatan = $request->kecamatan2;
         }
 
         $kode = str_random(6);
