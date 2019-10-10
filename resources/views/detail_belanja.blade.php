@@ -92,13 +92,31 @@
                                         </div>
                                     </div>
                                     <div class="form-group row">
+                                        <label for="desa" class="col-sm-4 col-form-label">Kelurahan / Desa</label>
+                                        <div class="col-sm-4">
+                                            <input type="text" class="form-control" name="desa" id="desa" value="">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="rt" class="col-sm-4 col-form-label">RT</label>
+                                        <div class="col-sm-4">
+                                            <input type="text" class="form-control" name="rt" id="rt" value="">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="rw" class="col-sm-4 col-form-label">RW</label>
+                                        <div class="col-sm-4">
+                                            <input type="text" class="form-control" name="rw" id="rw" value="">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
                                         <label for="kecamatan" class="col-sm-4 col-form-label"><span class="label-kecamatan"> Kecamatan </span></label>
                                         <div class="col-sm-4">
                                             <select name="kecamatan" id="kecamatan" class="form-control kecamatan">
                                                 <option value="">--Pilih Kecamatan--</option>
-                                                <option value="1">Cilacap Utara</option>
-                                                <option value="2">Cilacap Tengah</option>
-                                                <option value="3">Cilacap Selatan</option>
+                                                <option value="Cilacap Utara">Cilacap Utara</option>
+                                                <option value="Cilacap Tengah">Cilacap Tengah</option>
+                                                <option value="Cilacap Selatan">Cilacap Selatan</option>
                                                 <option value="4">Lainnya...</option>
                                             </select>
                                         </div>
@@ -110,7 +128,7 @@
                                             @if ($errors->has('kecamatan2'))
                                                 {{ $errors->first('kecamatan2') }}
                                             @endif
-
+                                            
                                             @if ($errors->has('kabupaten'))
                                                 {{ $errors->first('kabupaten') }}
                                             @endif
@@ -137,6 +155,26 @@
                                             <label for="kode_pos" class="col-sm-4 col-form-label">Kode Pos</label>
                                             <div class="col-sm-4">
                                                 <input type="text" class="form-control" name="kode_pos" id="kode_pos" value="">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <div class="form-group row">
+                                        <label for="dropshipper" class="col-sm-4 col-form-label">
+                                            <label for="dropshipper"><input type="checkbox" name="dropshipper" class="dropshipper" id="dropshipper" value="1"> Dropshipper </label>
+                                        </label>
+                                    </div>
+                                    <div class="form-dropshipper">
+                                        <div class="form-group row">
+                                            <label for="dropshipper_nama" class="col-sm-4 col-form-label">Nama Pengirim</label>
+                                            <div class="col-sm-4">
+                                                <input type="text" class="form-control" name="dropshipper_nama" id="dropshipper_nama" value="">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label for="dropshipper_detail" class="col-sm-4 col-form-label">Info Tambahan</label>
+                                            <div class="col-sm-4">
+                                                <input type="text" class="form-control" name="dropshipper_detail" id="dropshipper_detail" value="">
                                             </div>
                                         </div>
                                     </div>
@@ -242,40 +280,49 @@
                     var kecamatanValue = $(this).val();
                     var total_harga = $('.total_harga').val();
 
-                    if(kecamatanValue == 1) {
+                    if(kecamatanValue == "Cilacap Utara") {
                         var ongkir = 3000;
                         $('.ongkir').append(rupiah(ongkir));
                         $('.ongkir_hidden').val(ongkir);
-                        total_bayar = parseInt(total_harga) + 3000;
+                        var total_bayar = parseInt(total_harga) + 3000;
                         $('.form-kabupaten-kodepos').hide();
                         $('.label-kecamatan').show();
-                    } else if(kecamatanValue == 2) {
+                    } else if(kecamatanValue == "Cilacap Tengah") {
                         var ongkir = 4000;
                         $('.ongkir').append(rupiah(ongkir));
                         $('.ongkir_hidden').val(ongkir);
-                        total_bayar = parseInt(total_harga) + 4000;
+                        var total_bayar = parseInt(total_harga) + 4000;
                         $('.form-kabupaten-kodepos').hide();
                         $('.label-kecamatan').show();
-                    } else if(kecamatanValue == 3) {
+                    } else if(kecamatanValue == "Cilacap Selatan") {
                         var ongkir = 5000;
                         $('.ongkir').append(rupiah(ongkir));
                         $('.ongkir_hidden').val(ongkir);
-                        total_bayar = parseInt(total_harga) + 5000;
+                        var total_bayar = parseInt(total_harga) + 5000;
                         $('.form-kabupaten-kodepos').hide();
                         $('.label-kecamatan').show();
                     } else if(kecamatanValue == 4) {
                         $('.label-kecamatan').hide();
                         $('.form-kabupaten-kodepos').show();
                         $('.ongkir').append(0);
-                        total_bayar = parseInt(total_harga);
+                        var total_bayar = parseInt(total_harga);
                     } else {
                         $('.ongkir').append(0);
                     }
                     
-                    $('.total_bayar').append(rupiah(total_bayar));
+                    $('.total_bayar').append(rupiah(parseInt(total_bayar)));
                     $('.total_bayar_hidden').val(total_bayar);
                 });
                 $('.form-kabupaten-kodepos').hide();
+                $('.form-dropshipper').hide();
+
+                $('#dropshipper').on('change', function() {
+                    if(this.checked) {
+                        $('.form-dropshipper').show();
+                    } else {
+                        $('.form-dropshipper').hide();
+                    }
+                });
             });
         </script>
     </body>

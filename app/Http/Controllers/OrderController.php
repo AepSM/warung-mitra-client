@@ -45,14 +45,16 @@ class OrderController extends Controller
             ])->validate();
         }
 
-        if ($request->kecamatan1 == 1) {
-            $kecamatan = "Cilacap Utara";
-        } elseif ($request->kecamatan1 == 2) {
-            $kecamatan = "Cilacap Tengah";
-        } elseif ($request->kecamatan1 == 3) {
-            $kecamatan = "Cilacap Selatan";
-        } else {
+        if ($request->kecamatan == 4) {
             $kecamatan = $request->kecamatan2;
+        } else {
+            $kecamatan = $request->kecamatan;
+        }
+
+        if ($request->dropshipper) {
+            $dropshipper = $request->dropshipper;
+            $dropshipper_nama = $request->dropshipper_nama;
+            $dropshipper_detail = $request->dropshipper_detail;
         }
 
         $kode = str_random(6);
@@ -63,9 +65,15 @@ class OrderController extends Controller
             "tanggal" => Carbon::now(),
             "nama" => $request->nama,
             "alamat" => $request->alamat,
+            "desa" => $request->desa,
+            "rt" => $request->rt,
+            "rw" => $request->rw,
             "kecamatan" => $kecamatan,
             "kabupaten" => $request->kabupaten,
             "kode_pos" => $request->kode_pos,
+            "dropshipper" => $dropshipper,
+            "dropshipper_nama" => $dropshipper_nama,
+            "dropshipper_detail" => $dropshipper_detail,
             "total_harga" => $request->total_harga,
             "ongkir" => $request->ongkir,
             "total_bayar" => $request->total_bayar,
