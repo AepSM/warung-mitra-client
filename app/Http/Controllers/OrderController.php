@@ -55,6 +55,10 @@ class OrderController extends Controller
             $dropshipper = $request->dropshipper;
             $dropshipper_nama = $request->dropshipper_nama;
             $dropshipper_detail = $request->dropshipper_detail;
+        } else {
+            $dropshipper = null;
+            $dropshipper_nama = null;
+            $dropshipper_detail = null;
         }
 
         $kode = str_random(6);
@@ -75,7 +79,7 @@ class OrderController extends Controller
             "dropshipper_nama" => $dropshipper_nama,
             "dropshipper_detail" => $dropshipper_detail,
             "total_harga" => $request->total_harga,
-            "ongkir" => $request->ongkir,
+            "ongkir" => null,
             "total_bayar" => $request->total_bayar,
             "status_bayar" => 0
         ]);

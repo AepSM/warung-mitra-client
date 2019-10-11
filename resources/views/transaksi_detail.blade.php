@@ -151,10 +151,10 @@
                                             <td>Total Harga:</td>
                                             <td class="nominal">Rp. <span>{{ rupiah($orders->total_harga) }}</span></td>
                                         </tr>
-                                        <tr>
+                                        {{-- <tr>
                                             <td>Ongkos Kirim:</td>
                                             <td class="nominal">Rp. <span class="ongkir">{{ rupiah($orders->ongkir) }}</span></td>
-                                        </tr>
+                                        </tr> --}}
                                         <tr>
                                             <td><label for="poin"><input type="checkbox" name="poin" class="poin" id="poin" value="{{ $orders->data_customer->poin }}"> Poin: </label></td>
                                             <td class="nominal"><span class="val_poin">{{ rupiah($orders->data_customer->poin) }}</span></td>

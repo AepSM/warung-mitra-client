@@ -139,6 +139,7 @@
                                         </div>
                                     </div>
                                     <div class="form-kabupaten-kodepos">
+                                        <p style="font-size: 0.8em;"><i>Note: untuk kecamatan lainnya ada tambahan ongkir</i></p>
                                         <div class="form-group row">
                                             <label for="kecamatan" class="col-sm-4 col-form-label">Kecamatan</label>
                                             <div class="col-sm-4">
@@ -228,18 +229,18 @@
                                             <td class="nominal">Rp. <span>{{ rupiah($total_harga->sumHarga) }}</span></td>
                                             <input type="hidden" name="total_harga" class="total_harga" value="{{ $total_harga->sumHarga }}">
                                         </tr>
-                                        <tr>
+                                        {{-- <tr>
                                             <td>Ongkos Kirim:</td>
                                             <td class="nominal">Rp. <span class="ongkir">{{ rupiah(0) }}</span></td>
                                             <input type="hidden" name="ongkir" class="ongkir_hidden" value="">
-                                        </tr>
+                                        </tr> --}}
                                     </table>
                                     <hr>
                                     <table class="table-bayar">
                                         <tr>
                                             <td><strong> Total Bayar: </strong></td>
-                                            <td class="nominal"><strong> Rp. <span class="total_bayar">{{ rupiah(0) }}</span> </strong></td>
-                                            <input type="hidden" name="total_bayar" class="total_bayar_hidden" value="">
+                                            <td class="nominal"><strong> Rp. <span class="total_bayar">{{ rupiah($total_harga->sumHarga) }}</span> </strong></td>
+                                            <input type="hidden" name="total_bayar" class="total_bayar_hidden" value="{{ $total_harga->sumHarga }}">
                                         </tr>
                                     </table>
                                 </div>
