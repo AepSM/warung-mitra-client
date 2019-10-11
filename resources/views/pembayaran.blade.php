@@ -125,7 +125,7 @@
                                             </div>
                                             <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
                                                 <div class="card-body">
-                                                    Untuk pembelian via <strong>COD</strong> bisa menghubungi kontak yang ada di website www.warungmitra.com
+                                                    Untuk pembelian via <strong>COD</strong> (khusus wilayah cilacap utara, tengah dan selatan) bisa menghubungi kontak yang ada di website www.warungmitra.com
                                                 </div>
                                             </div>
                                         </div>

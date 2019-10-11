@@ -94,13 +94,13 @@
                                 </p>
 
                                 @if ($order->jenis_bayar == 2)
-                                    <p class="title_rekening">Pembayaran dapat dilakukan ke rekening a.n Warung mitra berikut: </p>        
+                                    <p class="title_rekening">Pembayaran dapat dilakukan ke rekening a.n <strong>Warung mitra</strong> berikut: </p>        
                                     <p>
                                         <input type="text" style="border: none; font-weight: bold;" value="11100-00093-0000001" id="no_rek" readonly/>
                                         <button type="button" style="border: none; background: none; color: grey;" id="copy" data-toggle="tooltip" data-placement="top" title="Tooltip on top">Salin</button>
                                     </p>
                                 @elseif ($order->jenis_bayar == 3)
-                                    <p class="title_rekening">Pembayaran dapat dilakukan ke rekening a.n Endro prasetyo,se berikut:  </p>        
+                                    <p class="title_rekening">Pembayaran dapat dilakukan ke rekening a.n <strong>Endro prasetyo,se</strong> berikut:  </p>        
                                     <p>
                                         <strong>Bank BCA, </strong><input type="text" style="border: none; font-weight: bold;" value="434-0071-439" id="no_rek" readonly/>
                                         <button type="button" style="border: none; background: none; color: grey;" id="copy" data-toggle="tooltip" data-placement="top" title="Tooltip on top">Salin</button>
