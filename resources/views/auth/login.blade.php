@@ -1,162 +1,104 @@
-<link href="{{ asset('client/css/bootstrap.css') }}" rel="stylesheet" id="bootstrap-css">
-<script src="{{ asset('client/js/bootstrap.bundle.min.js') }}"></script>
-<script src="{{ asset('client/js/jquery-2.0.0.min.js') }}"></script>
-<!------ Include the above in your HEAD tag ---------->
-
 <!DOCTYPE html>
-<html>    
-    <head>
-        <title>Warung Mitra | Login</title>
-        <!-- Font awesome 5 -->
-        <link href="{{ asset('client/fonts/fontawesome/css/fontawesome-all.min.css') }}" type="text/css" rel="stylesheet">
-        <style>
-                /* Coded with love by Mutiullah Samim */
-            body,
-            html {
-                margin: 0;
-                padding: 0;
-                height: 100%;
-                background: #60a3bc !important;
-            }
-            .user_card {
-                height: 420px;
-                width: 350px;
-                margin-top: auto;
-                margin-bottom: auto;
-                /* background: #f39c12; */
-                background: #fff;
-                position: relative;
-                display: flex;
-                justify-content: center;
-                flex-direction: column;
-                padding: 10px;
-                box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-                -webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-                -moz-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-                border-radius: 5px;
+<html lang="en">
+<head>
+	<title>Login Warung Mitra</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+<!--===============================================================================================-->	
+	<link rel="icon" type="image/png" href="{{ asset('logreg/images/icons/favicon.ico') }}"/>
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{{ asset('logreg/vendor/bootstrap/css/bootstrap.min.css') }}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{{ asset('logreg/fonts/font-awesome-4.7.0/css/font-awesome.min.css') }}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{{ asset('logreg/fonts/iconic/css/material-design-iconic-font.min.css') }}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{{ asset('logreg/vendor/animate/animate.css') }}">
+<!--===============================================================================================-->	
+	<link rel="stylesheet" type="text/css" href="{{ asset('logreg/vendor/css-hamburgers/hamburgers.min.css') }}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{{ asset('logreg/vendor/animsition/css/animsition.min.css') }}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{{ asset('logreg/vendor/select2/select2.min.css') }}">
+<!--===============================================================================================-->	
+	<link rel="stylesheet" type="text/css" href="{{ asset('logreg/vendor/daterangepicker/daterangepicker.css') }}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{{ asset('logreg/css/util.css') }}">
+	<link rel="stylesheet" type="text/css" href="{{ asset('logreg/css/main.css') }}">
+<!--===============================================================================================-->
+</head>
+<body>
+	
+	<div class="limiter">
+		<div class="container-login100" style="background-image: url('logreg/images/bg-01.jpg');">
+			<div class="wrap-login100">
+				<form class="login100-form validate-form" method="POST" action="{{ route('login') }}">
+					@csrf
+					<span class="login100-form-logo">
+						<img src="{{ asset('logreg/images/logo.png') }}" alt="">
+					</span>
 
-            }
-            .brand_logo_container {
-                position: absolute;
-                height: 170px;
-                width: 170px;
-                top: -75px;
-                border-radius: 50%;
-                /* background: #60a3bc; */
-                background: #fff;
-                padding: 10px;
-                text-align: center;
-            }
-            .brand_logo {
-                height: 150px;
-                width: 150px;
-                border-radius: 50%;
-                border: 2px solid white;
-            }
-            .form_container {
-                margin-top: 100px;
-            }
-            .login_btn {
-                width: 100%;
-                background: #228B22 !important;
-                color: white !important;
-            }
-            .login_btn:focus {
-                box-shadow: none !important;
-                outline: 0px !important;
-            }
-            .login_container {
-                padding: 0 2rem;
-            }
-            .input-group {
-                margin-bottom: 50px;
-            }
-            .input-group-text {
-                background: #228B22 !important;
-                color: white !important;
-                border: 0 !important;
-                border-radius: 0.25rem 0 0 0.25rem !important;
-            }
-            .input_user,
-            .input_pass:focus {
-                box-shadow: none !important;
-                outline: 0px !important;
-            }
-            .custom-checkbox .custom-control-input:checked~.custom-control-label::before {
-                background-color: #c0392b !important;
-            }
-            .text-error {
-                height: 10px;
-                margin-top: -10;
-                margin-bottom: 20px;
-                font-size: 12px;
-                color: red;
-            }
-            .border-error {
-                border-color: red;
-            }
-            .links {
-                font-size: 14px;
-            }
-        </style>
-    </head>
-    <!--Coded with love by Mutiullah Samim-->
-    <body>
-        <div class="container h-100">
-            <div class="d-flex justify-content-center h-100">
-                <div class="user_card">
-                    <div class="d-flex justify-content-center">
-                        <div class="brand_logo_container">
-                            <img src="{{ asset('client/images/logos/logo-wm.png') }}" class="brand_logo" alt="Logo">
-                        </div>
-                    </div>
-                    <div class="d-flex justify-content-center form_container">
-                        <form method="POST" action="{{ route('login') }}">
-                            @csrf
+					<span class="login100-form-title p-b-34 p-t-27">
+                        Log in <br>
+                        <i style="font-size: 0.4em; color: black;">
+                            @if ($errors->has('email') || $errors->has('password'))
+                                Gagal! silahkan cek kembali email dan password anda
+                            @endif
+                        </i>
+					</span>
 
-                            <div class="input-group mb-3">
-                                <div class="input-group-append">
-                                    <span class="input-group-text"><i class="fas fa-user"></i></span>
-                                </div>
-                                <input type="text" name="email" class="form-control input_user{{ $errors->has('email') ? ' border-error' : '' }}" value="{{ old('email') }}" placeholder="email">
-                            </div>
-                            <div class="text-error">
-                                @if ($errors->has('email'))
-                                    {{ $errors->first('email') }}
-                                @endif
-                            </div>
-                            <div class="input-group mb-2">
-                                <div class="input-group-append">
-                                    <span class="input-group-text"><i class="fas fa-key"></i></span>
-                                </div>
-                                <input type="password" name="password" class="form-control input_pass{{ $errors->has('password') ? ' border-error' : '' }}" value="{{ old('password') }}" placeholder="password">
-                            </div>
-                            <div class="text-error">
-                                @if ($errors->has('password'))
-                                    {{ $errors->first('password') }}
-                                @endif
-                            </div>
-                            <div class="form-group">
-                                <div class="custom-control custom-checkbox">
-                                    <input type="checkbox" name="remember" class="custom-control-input" id="customControlInline" {{ old('remember') ? 'checked' : '' }}>
-                                    <label class="custom-control-label" for="customControlInline">Remember me</label>
-                                </div>
-                            </div>
-                            <div class="d-flex justify-content-center mt-3">
-                                <button type="submit" name="button" class="btn login_btn btn-block">Login</button>
-                            </div>
-                        </form>
-                    </div>
-                    <div class="mt-2">
-                        <div class="d-flex justify-content-center links">
-                            Belum punya akun? <a href="{{ route('register') }}" class="ml-2">Register</a>
-                        </div>
-                        <div class="d-flex justify-content-center links">
-                            <a href="{{ route('password.request') }}">Lupa Password</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </body>
+					<div class="wrap-input100 validate-input" data-validate = "Enter email">
+						<input class="input100" type="email" name="email" value="{{ old('email') }}" placeholder="Email">
+						<span class="focus-input100" data-placeholder="&#xf207;"></span>
+					</div>
+
+					<div class="wrap-input100 validate-input" data-validate="Enter password">
+						<input class="input100" type="password" name="password" value="{{ old('password') }}" placeholder="Password">
+						<span class="focus-input100" data-placeholder="&#xf207;"></span>
+					</div>
+
+					<div class="contact100-form-checkbox">
+						<input class="input-checkbox100" id="ckb1" type="checkbox" name="remember">
+						<label class="label-checkbox100" for="ckb1">
+							Remember me
+						</label>
+					</div>
+
+					<div class="container-login100-form-btn">
+						<button type="submit" class="login100-form-btn">
+							Login
+						</button>
+					</div>
+
+					<div class="text-center p-t-90">
+						<a class="txt1" href="{{ route('password.request') }}">
+							Forgot Password?
+						</a>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	
+
+	<div id="dropDownSelect1"></div>
+	
+<!--===============================================================================================-->
+	<script src="{{ asset('logreg/vendor/jquery/jquery-3.2.1.min.js') }}"></script>
+<!--===============================================================================================-->
+	<script src="{{ asset('logreg/vendor/animsition/js/animsition.min.js') }}"></script>
+<!--===============================================================================================-->
+	<script src="{{ asset('logreg/vendor/bootstrap/js/popper.js') }}"></script>
+	<script src="{{ asset('logreg/vendor/bootstrap/js/bootstrap.min.js') }}"></script>
+<!--===============================================================================================-->
+	<script src="{{ asset('logreg/vendor/select2/select2.min.js') }}"></script>
+<!--===============================================================================================-->
+	<script src="{{ asset('logreg/vendor/daterangepicker/moment.min.js') }}"></script>
+	<script src="{{ asset('logreg/vendor/daterangepicker/daterangepicker.js') }}"></script>
+<!--===============================================================================================-->
+	<script src="{{ asset('logreg/vendor/countdowntime/countdowntime.js') }}"></script>
+<!--===============================================================================================-->
+	<script src="{{ asset('logreg/js/main.js') }}"></script>
+
+</body>
 </html>

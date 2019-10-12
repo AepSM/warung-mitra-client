@@ -11,7 +11,8 @@
 |
 */
 
-Route::get('/', 'PlatformController@index');
+// Route::get('/', 'PlatformController@index');
+Route::get('/', 'HomeController@index');
 
 Auth::routes();
 
