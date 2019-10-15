@@ -167,13 +167,13 @@
                                     </div>
                                     <div class="form-dropshipper">
                                         <div class="form-group row">
-                                            <label for="dropshipper_nama" class="col-sm-4 col-form-label">Nama Pengirim</label>
+                                            <label for="dropshipper_nama" class="col-sm-4 col-form-label">Nama Penerima</label>
                                             <div class="col-sm-4">
                                                 <input type="text" class="form-control" name="dropshipper_nama" id="dropshipper_nama" value="">
                                             </div>
                                         </div>
                                         <div class="form-group row">
-                                            <label for="dropshipper_detail" class="col-sm-4 col-form-label">Info Tambahan</label>
+                                            <label for="dropshipper_detail" class="col-sm-4 col-form-label">Alamat Lengkap</label>
                                             <div class="col-sm-4">
                                                 <input type="text" class="form-control" name="dropshipper_detail" id="dropshipper_detail" value="">
                                             </div>
