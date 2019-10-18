@@ -11,6 +11,8 @@
 
         <title>{{ config('app.name', 'Warung Mitra') }}</title>
 
+        <link rel="icon" type="image/png" href="{{ asset('logreg/images/icons/favicon.ico') }}"/>
+
         <link href="{{ asset('client/css/bootstrap.css') }}" rel="stylesheet" type="text/css"/>
 
         <!-- custom style -->
@@ -151,10 +153,10 @@
                                             <td>Total Harga:</td>
                                             <td class="nominal">Rp. <span>{{ rupiah($orders->total_harga) }}</span></td>
                                         </tr>
-                                        {{-- <tr>
+                                        <tr>
                                             <td>Ongkos Kirim:</td>
-                                            <td class="nominal">Rp. <span class="ongkir">{{ rupiah($orders->ongkir) }}</span></td>
-                                        </tr> --}}
+                                            <td class="nominal">Rp. <span class="ongkir">{{ rupiah(100) }}</span></td>
+                                        </tr>
                                         <tr>
                                             <td><label for="poin"><input type="checkbox" name="poin" class="poin" id="poin" value="{{ $orders->data_customer->poin }}"> Poin: </label></td>
                                             <td class="nominal"><span class="val_poin">{{ rupiah($orders->data_customer->poin) }}</span></td>
@@ -165,8 +167,8 @@
                                     <table class="table-bayar">
                                         <tr>
                                             <td><strong> Total Bayar: </strong></td>
-                                            <td class="nominal"><strong> Rp. <span class="total_bayar">{{ rupiah($orders->total_bayar) }}</span> </strong></td>
-                                            <input type="hidden" name="total_bayar" id="hidden_total_bayar" value="{{ $orders->total_bayar }}">
+                                            <td class="nominal"><strong> Rp. <span class="total_bayar">{{ rupiah($orders->total_bayar + 100) }}</span> </strong></td>
+                                            <input type="hidden" name="total_bayar" id="hidden_total_bayar" value="{{ $orders->total_bayar + 100 }}">
                                         </tr>
                                     </table>
                                 </div>

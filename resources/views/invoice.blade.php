@@ -11,6 +11,8 @@
 
         <title>{{ config('app.name', 'Warung Mitra') }}</title>
 
+        <link rel="icon" type="image/png" href="{{ asset('logreg/images/icons/favicon.ico') }}"/>
+
         <link href="{{ asset('client/css/bootstrap.css') }}" rel="stylesheet" type="text/css"/>
 
         <!-- custom style -->

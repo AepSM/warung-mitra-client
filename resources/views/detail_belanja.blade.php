@@ -11,6 +11,8 @@
 
         <title>{{ config('app.name', 'Warung Mitra') }}</title>
 
+        <link rel="icon" type="image/png" href="{{ asset('logreg/images/icons/favicon.ico') }}"/>
+
         <link href="{{ asset('client/css/bootstrap.css') }}" rel="stylesheet" type="text/css"/>
 
         <!-- custom style -->
@@ -229,18 +231,18 @@
                                             <td class="nominal">Rp. <span>{{ rupiah($total_harga->sumHarga) }}</span></td>
                                             <input type="hidden" name="total_harga" class="total_harga" value="{{ $total_harga->sumHarga }}">
                                         </tr>
-                                        {{-- <tr>
-                                            <td>Ongkos Kirim:</td>
-                                            <td class="nominal">Rp. <span class="ongkir">{{ rupiah(0) }}</span></td>
-                                            <input type="hidden" name="ongkir" class="ongkir_hidden" value="">
-                                        </tr> --}}
+                                        <tr>
+                                            <td>Tas Plastik:</td>
+                                            <td class="nominal">Rp. <span class="plastik">{{ rupiah(100) }}</span></td>
+                                            <input type="hidden" name="plastik" class="plastik_hidden" value="100">
+                                        </tr>
                                     </table>
                                     <hr>
                                     <table class="table-bayar">
                                         <tr>
                                             <td><strong> Total Bayar: </strong></td>
-                                            <td class="nominal"><strong> Rp. <span class="total_bayar">{{ rupiah($total_harga->sumHarga) }}</span> </strong></td>
-                                            <input type="hidden" name="total_bayar" class="total_bayar_hidden" value="{{ $total_harga->sumHarga }}">
+                                            <td class="nominal"><strong> Rp. <span class="total_bayar">{{ rupiah($total_harga->sumHarga + 100) }}</span> </strong></td>
+                                            <input type="hidden" name="total_bayar" class="total_bayar_hidden" value="{{ $total_harga->sumHarga + 100 }}">
                                         </tr>
                                     </table>
                                 </div>
@@ -276,43 +278,24 @@
                     return rupiah;
                 }
                 $('.kecamatan').on('change', function() {
-                    $('.ongkir').empty();
-                    $('.total_bayar').empty();
                     var kecamatanValue = $(this).val();
-                    var total_harga = $('.total_harga').val();
 
                     if(kecamatanValue == "Cilacap Utara") {
-                        var ongkir = 3000;
-                        $('.ongkir').append(rupiah(ongkir));
-                        $('.ongkir_hidden').val(ongkir);
-                        var total_bayar = parseInt(total_harga) + 3000;
                         $('.form-kabupaten-kodepos').hide();
                         $('.label-kecamatan').show();
                     } else if(kecamatanValue == "Cilacap Tengah") {
-                        var ongkir = 4000;
-                        $('.ongkir').append(rupiah(ongkir));
-                        $('.ongkir_hidden').val(ongkir);
-                        var total_bayar = parseInt(total_harga) + 4000;
                         $('.form-kabupaten-kodepos').hide();
                         $('.label-kecamatan').show();
                     } else if(kecamatanValue == "Cilacap Selatan") {
-                        var ongkir = 5000;
-                        $('.ongkir').append(rupiah(ongkir));
-                        $('.ongkir_hidden').val(ongkir);
-                        var total_bayar = parseInt(total_harga) + 5000;
                         $('.form-kabupaten-kodepos').hide();
                         $('.label-kecamatan').show();
                     } else if(kecamatanValue == 4) {
                         $('.label-kecamatan').hide();
                         $('.form-kabupaten-kodepos').show();
-                        $('.ongkir').append(0);
-                        var total_bayar = parseInt(total_harga);
                     } else {
                         $('.ongkir').append(0);
                     }
                     
-                    $('.total_bayar').append(rupiah(parseInt(total_bayar)));
-                    $('.total_bayar_hidden').val(total_bayar);
                 });
                 $('.form-kabupaten-kodepos').hide();
                 $('.form-dropshipper').hide();

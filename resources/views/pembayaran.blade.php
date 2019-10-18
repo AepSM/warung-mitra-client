@@ -11,6 +11,8 @@
 
         <title>{{ config('app.name', 'Warung Mitra') }}</title>
 
+        <link rel="icon" type="image/png" href="{{ asset('logreg/images/icons/favicon.ico') }}"/>
+
         <link href="{{ asset('client/css/bootstrap.css') }}" rel="stylesheet" type="text/css"/>
 
         <!-- custom style -->
@@ -153,8 +155,8 @@
                                             <td class="nominal">Rp. <span>{{ rupiah($orders->total_harga) }}</span></td>
                                         </tr>
                                         <tr>
-                                            <td>Ongkos Kirim:</td>
-                                            <td class="nominal">Rp. <span class="ongkir">{{ rupiah($orders->ongkir) }}</span></td>
+                                            <td>Tas Plastik:</td>
+                                            <td class="nominal">Rp. <span class="ongkir">{{ rupiah(100) }}</span></td>
                                         </tr>
                                         <tr>
                                             <td><label for="poin"><input type="checkbox" name="poin" class="poin" id="poin" value="{{ $orders->data_customer->poin }}"> Poin: </label></td>
