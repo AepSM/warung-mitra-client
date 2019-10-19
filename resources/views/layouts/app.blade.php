@@ -151,7 +151,7 @@
                             </div>
                         </li>
                         <li class="nav-item"><a class="nav-link" href="{{ url('search?attr=Barang paketan') }}">Barang paketan</a></li>
-                        <li class="nav-item"><a class="nav-link" href="{{ url('search?attr=Kesehatan dan kecantikan') }}">Kesehatan dan kecantikan</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{{ url('search?attr=Kesehatan & Kecantikan') }}">Kesehatan dan Kecantikan</a></li>
                         <li class="nav-item"><a class="nav-link" href="{{ url('search?attr=Perlengkapan rumah tangga') }}">Perlengkapan rumah tangga</a></li>
                         <li class="nav-item"><a class="nav-link" href="{{ url('search?attr=Kebutuhan bayi') }}">Kebutuhan bayi</a></li>
                         <li class="nav-item"><a class="nav-link" href="{{ url('search?attr=Promo') }}">Promo</a></li>
