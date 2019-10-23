@@ -98,17 +98,32 @@
                                         <div class="col-sm-4">
                                             <input type="text" class="form-control" name="desa" id="desa" value="">
                                         </div>
+                                        <div class="text-error">
+                                            @if ($errors->has('desa'))
+                                                {{ $errors->first('desa') }}
+                                            @endif
+                                        </div>
                                     </div>
                                     <div class="form-group row">
                                         <label for="rt" class="col-sm-4 col-form-label">RT</label>
                                         <div class="col-sm-4">
                                             <input type="text" class="form-control" name="rt" id="rt" value="">
                                         </div>
+                                        <div class="text-error">
+                                            @if ($errors->has('rt'))
+                                                {{ $errors->first('rt') }}
+                                            @endif
+                                        </div>
                                     </div>
                                     <div class="form-group row">
                                         <label for="rw" class="col-sm-4 col-form-label">RW</label>
                                         <div class="col-sm-4">
                                             <input type="text" class="form-control" name="rw" id="rw" value="">
+                                        </div>
+                                        <div class="text-error">
+                                            @if ($errors->has('rw'))
+                                                {{ $errors->first('rw') }}
+                                            @endif
                                         </div>
                                     </div>
                                     <div class="form-group row">

@@ -35,12 +35,18 @@ class OrderController extends Controller
     {
         if ($request->kecamatan == 4) {
             \Validator::make($request->all(), [
+                "desa" => "required",
+                "rt" => "required",
+                "rw" => "required",
                 "kecamatan2" => "required",
                 "kabupaten" => "required",
                 "kode_pos" => "required"
             ])->validate();
         } else {
             \Validator::make($request->all(), [
+                "desa" => "required",
+                "rt" => "required",
+                "rw" => "required",
                 "kecamatan" => "required"
             ])->validate();
         }
