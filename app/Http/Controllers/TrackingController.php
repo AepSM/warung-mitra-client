@@ -4,11 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Order;
 use App\Kategori;
+use App\Tracking;
 use App\OrderSementara;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class ProfilController extends Controller
+class TrackingController extends Controller
 {
     public function index()
     {
@@ -24,14 +25,22 @@ class ProfilController extends Controller
             $countOrderSementara = 0;
             $countOrders = 0;
         }
-        
+
         $kategoris = Kategori::all()->groupBy('grup');
-        $profil = Auth::user();
-        return view('profil', [
+
+        return view('tracking', [
                 'transaksi' => $countOrders,
                 'order_sementara' => $countOrderSementara,
-                'kategoris' => $kategoris, 
-                'profil' => $profil
+                'kategoris' => $kategoris
             ]);
+    }
+
+    public function show(Request $request)
+    {
+        $trackings = Tracking::where('kode', $request->kode)->get();
+
+        return response()->json([
+            'data' => $trackings
+        ]);
     }
 }

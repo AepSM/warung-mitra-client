@@ -81,6 +81,12 @@
                                 </div>
                             @else
                                 <div class="widget-header mr-3">
+                                    <a href="{{ route('tracking') }}"><small class="title text-muted">TRACKING</small></a>
+                                    <div class="text-center">
+                                        <span style="color: white;">0</span>
+                                    </div>
+                                </div>
+                                <div class="widget-header mr-3">
                                     <a href="{{ route('transaksi.index') }}"><small class="title text-muted">TRANSAKSI</small></a>
                                     <div class="text-center">
                                         <a href="{{ route('transaksi.index') }}">
@@ -137,24 +143,22 @@
                 <div class="collapse navbar-collapse" id="main_nav">
                     <ul class="navbar-nav">
                         <li class="nav-item"><a class="nav-link" href="/">Beranda</a></li>
-                        {{-- <li class="nav-item"><a class="nav-link" href="#">Kontak</a></li> --}}
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="dropdown07" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Kebutuhan pokok</a>
-                            <div class="dropdown-menu" aria-labelledby="dropdown07">
-                                <a class="dropdown-item" href="{{ url('search?attr=Bahan masak') }}">Bahan masak</a>
-                                <a class="dropdown-item" href="{{ url('search?attr=Kopi') }}">Kopi</a>
-                                <a class="dropdown-item" href="{{ url('search?attr=Makanan') }}">Makanan</a>
-                                <a class="dropdown-item" href="{{ url('search?attr=Mie') }}">Mie</a>
-                                <a class="dropdown-item" href="{{ url('search?attr=Minuman') }}">Minuman</a>
-                                <a class="dropdown-item" href="{{ url('search?attr=Renceng') }}">Renceng</a>
-                                <a class="dropdown-item" href="{{ url('search?attr=Sembako') }}">Sembako</a>
-                            </div>
-                        </li>
-                        <li class="nav-item"><a class="nav-link" href="{{ url('search?attr=Barang paketan') }}">Barang paketan</a></li>
-                        <li class="nav-item"><a class="nav-link" href="{{ url('search?attr=Kesehatan & Kecantikan') }}">Kesehatan dan Kecantikan</a></li>
-                        <li class="nav-item"><a class="nav-link" href="{{ url('search?attr=Perlengkapan rumah tangga') }}">Perlengkapan rumah tangga</a></li>
-                        <li class="nav-item"><a class="nav-link" href="{{ url('search?attr=Kebutuhan bayi') }}">Kebutuhan bayi</a></li>
-                        <li class="nav-item"><a class="nav-link" href="{{ url('search?attr=Promo') }}">Promo</a></li>
+                        @foreach ($kategoris as $grup => $kategori)
+                            @if (count($kategori) > 1)
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="#" id="dropdown07" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ $grup }}</a>
+                                    <div class="dropdown-menu" aria-labelledby="dropdown07">
+                                        @foreach ($kategori as $kategori_sub)
+                                            <a class="dropdown-item" href="{{ url('search?attr=' . $kategori_sub->nama) }}">{{ $kategori_sub->nama }}</a>
+                                        @endforeach
+                                    </div>
+                                </li>
+                            @else
+                                @foreach ($kategori as $kategori_sub)
+                                    <li class="nav-item"><a class="nav-link" href="{{ url('search?attr=' . $kategori_sub->nama) }}">{{ $kategori_sub->nama }}</a></li>
+                                @endforeach
+                            @endif
+                        @endforeach
                     </ul>
                 </div> <!-- collapse .// -->
             </div> <!-- container .// -->
