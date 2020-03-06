@@ -101,7 +101,7 @@
                                             <div class="card-header" id="headingTwo">
                                                 <h2 class="mb-0">
                                                     <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                                                        <label for="transfer"><input type="radio" name="metode_pembayaran" id="transfer" value="3"> Transfer Bank</label>
+                                                        <label for="transfer_bca"><input type="radio" name="metode_pembayaran" id="transfer_bca" value="3"> Transfer Bank</label>
                                                     </button>
                                                 </h2>
                                             </div>
@@ -117,16 +117,21 @@
                                             </div>
                                         </div>
                                         <div class="card">
-                                            <div class="card-header" id="headingThree">
+                                            <div class="card-header" id="headingFour">
                                                 <h2 class="mb-0">
-                                                    <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                                                        <label for="cod"><input type="radio" name="metode_pembayaran" id="cod" value="4"> Cash On Delivery (COD)</label>
+                                                    <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                                                        <label for="transfer_mandiri"><input type="radio" name="metode_pembayaran" id="transfer_mandiri" value="4"> Transfer Bank Mandiri</label>
                                                     </button>
                                                 </h2>
                                             </div>
-                                            <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+                                            <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordionExample">
                                                 <div class="card-body">
-                                                    Untuk pembelian via <strong>COD</strong> bisa menghubungi kontak yang ada di website www.warungmitra.com
+                                                    <table>
+                                                        <tr>
+                                                            <td><img src="{{ asset('client/images/logos/logo_bank_mandiri.png') }}" alt="warung-image" class="tf-aplikasi"></td>
+                                                            <td>Rekening atas nama <strong>Endro prasetyo,se</strong></td>
+                                                        </tr>
+                                                    </table>
                                                 </div>
                                             </div>
                                         </div>
@@ -139,6 +144,7 @@
                                             <li>Pagi pukul 10:00 s/d 12:00 (batas maksimal transfer pukul 09:00)</li>
                                             <li>Sore pukul 15:00 s/d 17:00 (transfer diatas pukul 09:00 s/d 14:00)</li>
                                             <li>Transfer diatas pukul 15:00 diantar besoknya pukul 10:00</li>
+                                            <li>kurir pakai <img src="{{ asset('client/images/logos/kawanexpress.png') }}" alt="kawan express" class="tf-aplikasi" style="padding: 10px;"> </li>
                                         </ul>
                                     </div>
                                 </div>
