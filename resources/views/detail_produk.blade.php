@@ -14,6 +14,10 @@
                                         <img src="http://warung-mitra-admin.test/img/{{ $produk->gambar1 }}">
                                     </div>
                                 </div>
+                                @if ($produk->video_id)
+                                    <iframe width="100%" height="345" src="https://www.youtube.com/embed/{{ $produk->video_id }}">
+                                    </iframe>                                    
+                                @endif
                             </article> <!-- gallery-wrap .end// -->
                         </aside>
                         <aside class="col-sm-6">
